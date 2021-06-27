@@ -3,6 +3,7 @@ package com.stathis.mydoctor.features.register
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.FirebaseAuth
+import com.stathis.mydoctor.PasswordValidator
 
 class RegisterViewModel : ViewModel() {
 
@@ -10,7 +11,7 @@ class RegisterViewModel : ViewModel() {
     val userRegisted = MutableLiveData<Boolean>()
 
     fun validateData(email: String, pass: String) {
-        when(checkPasswordStrength(pass)){
+        when(PasswordValidator.validatePassword(pass)){
             true -> {
                 auth.createUserWithEmailAndPassword(email,pass).addOnCompleteListener {
                     when(it.isSuccessful){
@@ -21,9 +22,5 @@ class RegisterViewModel : ViewModel() {
             }
             false -> {} // throw some kind of error to notify the user
         }
-    }
-
-    private fun checkPasswordStrength(pass : String) : Boolean {
-        return true
     }
 }
