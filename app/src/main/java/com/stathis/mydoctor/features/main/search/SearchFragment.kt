@@ -6,15 +6,9 @@ import com.stathis.mydoctor.abstraction.AbstractFragment
 
 class SearchFragment : AbstractFragment(R.layout.fragment_search) {
 
-    override fun init() {
-        //
-    }
+    override fun init() {}
 
-    override fun running() {
-        //
-    }
+    override fun running() {}
 
-    override fun stopped() {
-        //
-    }
+    override fun stopped() {}
 }

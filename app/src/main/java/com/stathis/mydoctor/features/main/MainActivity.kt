@@ -17,4 +17,6 @@ class MainActivity : AbstractActivity(R.layout.activity_main) {
     override fun running() {}
 
     override fun stopped() {}
+
+    override fun onBackPressed() {} // Logout pls
 }

@@ -6,7 +6,7 @@ import java.util.regex.Pattern
 object PasswordValidator {
 
     fun validatePassword(password : String): Boolean {
-        return when(password.length > 8){
+        return when(password.length > 6){
             true -> {
                 val letter = Pattern.compile("[a-zA-z]")
                 val digit = Pattern.compile("[0-9]")

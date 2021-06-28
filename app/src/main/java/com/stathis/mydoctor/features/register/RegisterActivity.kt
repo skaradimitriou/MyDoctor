@@ -29,11 +29,11 @@ class RegisterActivity : AbstractActivity(R.layout.activity_register) {
     }
 
     override fun running() {
-        val email = "admin@gmail.com"
-        val pass = "123456"
-        val pass_conf = "123456"
-
         register_btn.setOnClickListener {
+            val email = email_input_field.text.toString()
+            val pass = pass_input_field.text.toString()
+            val pass_conf = pass_conf_input_field.text.toString()
+
             when(pass == pass_conf){
                 true -> viewModel.validateData(email,pass)
                 false -> Unit //handle error case with appropriate messages
