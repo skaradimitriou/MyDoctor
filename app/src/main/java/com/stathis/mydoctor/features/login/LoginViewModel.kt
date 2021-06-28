@@ -3,7 +3,7 @@ package com.stathis.mydoctor.features.login
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.FirebaseAuth
-import com.stathis.mydoctor.PasswordValidator
+import com.stathis.mydoctor.utils.PasswordValidator
 
 class LoginViewModel : ViewModel() {
 

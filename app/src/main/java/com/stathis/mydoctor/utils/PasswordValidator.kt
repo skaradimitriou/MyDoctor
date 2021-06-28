@@ -1,4 +1,4 @@
-package com.stathis.mydoctor
+package com.stathis.mydoctor.utils
 
 
 import java.util.regex.Pattern
