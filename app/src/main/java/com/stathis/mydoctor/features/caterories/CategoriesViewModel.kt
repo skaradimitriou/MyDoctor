@@ -8,6 +8,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import com.google.firebase.firestore.FirebaseFirestore
 import com.stathis.mydoctor.abstraction.ItemClickListener
+import com.stathis.mydoctor.callbacks.CategoryCallback
 import com.stathis.mydoctor.features.caterories.adapter.CategoriesAdapter
 import com.stathis.mydoctor.features.caterories.model.DoctorCategory
 
@@ -15,10 +16,15 @@ class CategoriesViewModel : ViewModel(), ItemClickListener {
 
     private val firestore by lazy { FirebaseFirestore.getInstance() }
     val adapter = CategoriesAdapter(this)
+    private lateinit var callback : CategoryCallback
     val categories = MutableLiveData<List<DoctorCategory>>()
 
     init {
         getCategories()
+    }
+
+    fun bindCallback(callback : CategoryCallback){
+        this.callback = callback
     }
 
     private fun getCategories(){
@@ -48,7 +54,7 @@ class CategoriesViewModel : ViewModel(), ItemClickListener {
 
     override fun onItemTap(view: View) {
         when(view.tag){
-            is DoctorCategory -> {} //handle click later
+            is DoctorCategory -> callback.onCategoryTap(view.tag as DoctorCategory)
         }
     }
 }
