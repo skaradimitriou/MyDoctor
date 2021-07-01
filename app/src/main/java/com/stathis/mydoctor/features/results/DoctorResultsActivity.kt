@@ -2,6 +2,7 @@ package com.stathis.mydoctor.features.results
 
 import android.content.Intent
 import androidx.lifecycle.ViewModelProvider
+import com.google.gson.Gson
 import com.stathis.mydoctor.R
 import com.stathis.mydoctor.abstraction.AbstractActivity
 import com.stathis.mydoctor.callbacks.DoctorClickListener
@@ -31,8 +32,9 @@ class DoctorResultsActivity : AbstractActivity(R.layout.activity_doctor_results)
     override fun stopped() = viewModel.release(this)
 
     private fun openDoctorScreen(doctor: Doctor) {
+        val json = Gson().toJson(doctor)
         startActivity(Intent(this,DoctorActivity::class.java).also{
-            it.putExtra("DOCTOR",doctor.fullname)
+            it.putExtra("DOCTOR",json)
         })
     }
 }

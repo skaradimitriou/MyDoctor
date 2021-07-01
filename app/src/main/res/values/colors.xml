@@ -20,5 +20,8 @@
     <color name="navy_blue">#47597E</color>
     <color name="ocean_blue">#293B5F</color>
     <color name="dark_grey">#999</color>
+    <color name="darker_grey">#333</color>
+    <color name="dark_grey_alt">#666</color>
+    <color name="darkest_grey_alt">#777</color>
 
 </resources>

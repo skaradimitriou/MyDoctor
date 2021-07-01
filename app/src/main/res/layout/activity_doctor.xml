@@ -6,4 +6,220 @@
     android:layout_height="match_parent"
     tools:context=".features.doctor.DoctorActivity">
 
+    <ImageView
+        android:id="@+id/doctor_img"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/image_250"
+        tools:src="@mipmap/ic_launcher"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/background"
+        android:layout_marginTop="@dimen/dimen_230"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:paddingStart="@dimen/dimen_10"
+        android:background="@drawable/round_corners_top"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <TextView
+            android:id="@+id/doctor_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/dimen_16"
+            style="@style/text_h2_dark"
+            android:text="@string/dummy_doc_name"
+            app:layout_constraintTop_toTopOf="@id/background"/>
+
+        <TextView
+            android:id="@+id/doctor_category"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/darker_grey"
+            android:text="@string/dummy_doc_category"
+            app:layout_constraintTop_toBottomOf="@id/doctor_name"/>
+
+        <TextView
+            android:id="@+id/doctor_hospital"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/dark_grey_alt"
+            android:paddingBottom="@dimen/dimen_20"
+            android:paddingTop="@dimen/dimen_10"
+            android:text="@string/dummy_doc_hospital"
+            app:layout_constraintTop_toBottomOf="@id/doctor_category"/>
+
+        <View
+            android:id="@+id/patients_card"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dimen_80"
+            android:layout_marginEnd="@dimen/dimen_5"
+            android:background="@drawable/round_corners"
+            android:backgroundTint="@color/grey"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/experience_card"
+            app:layout_constraintTop_toBottomOf="@id/doctor_hospital" />
+
+        <TextView
+            android:id="@+id/patients_header"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dimen_10"
+            android:text="@string/doc_patient"
+            app:layout_constraintStart_toStartOf="@id/patients_card"
+            app:layout_constraintEnd_toEndOf="@id/patients_card"
+            app:layout_constraintTop_toTopOf="@id/patients_card"/>
+
+        <ImageView
+            android:id="@+id/patient_icon"
+            android:layout_width="@dimen/image_25"
+            android:layout_height="@dimen/image_25"
+            android:src="@mipmap/ic_launcher"
+            android:layout_marginStart="@dimen/dimen_10"
+            app:layout_constraintTop_toBottomOf="@id/patients_header"
+            app:layout_constraintStart_toStartOf="@id/patients_card" />
+
+        <TextView
+            android:id="@+id/patients_counter"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/dimen_5"
+            android:text="@string/dummy_doc_patients_counter"
+            style="@style/text_h4_dark"
+            app:layout_constraintBottom_toBottomOf="@+id/patient_icon"
+            app:layout_constraintEnd_toEndOf="@id/patients_card"
+            app:layout_constraintStart_toEndOf="@id/patient_icon"
+            app:layout_constraintTop_toBottomOf="@id/patients_header" />
+
+        <View
+            android:id="@+id/experience_card"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dimen_80"
+            android:layout_marginEnd="@dimen/dimen_5"
+            android:background="@drawable/round_corners"
+            android:backgroundTint="@color/grey"
+            app:layout_constraintStart_toEndOf="@id/patients_card"
+            app:layout_constraintEnd_toStartOf="@id/reviews_card"
+            app:layout_constraintTop_toBottomOf="@id/doctor_hospital" />
+
+        <TextView
+            android:id="@+id/experience_header"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dimen_10"
+            android:text="@string/doc_experience"
+            app:layout_constraintStart_toStartOf="@id/experience_card"
+            app:layout_constraintEnd_toEndOf="@id/experience_card"
+            app:layout_constraintTop_toTopOf="@id/experience_card"/>
+
+        <ImageView
+            android:id="@+id/experience_icon"
+            android:layout_width="@dimen/image_25"
+            android:layout_height="@dimen/image_25"
+            android:src="@mipmap/ic_launcher"
+            android:layout_marginStart="@dimen/dimen_10"
+            app:layout_constraintTop_toBottomOf="@id/experience_header"
+            app:layout_constraintStart_toStartOf="@id/experience_card" />
+
+        <TextView
+            android:id="@+id/experience_counter"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/dimen_5"
+            android:text="@string/dummy_doc_years_experience"
+            style="@style/text_h4_dark"
+            app:layout_constraintBottom_toBottomOf="@+id/experience_icon"
+            app:layout_constraintEnd_toEndOf="@id/experience_card"
+            app:layout_constraintStart_toEndOf="@id/experience_icon"
+            app:layout_constraintTop_toBottomOf="@id/experience_header" />
+
+        <View
+            android:id="@+id/reviews_card"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dimen_80"
+            android:layout_marginEnd="@dimen/dimen_10"
+            android:background="@drawable/round_corners"
+            android:backgroundTint="@color/grey"
+            app:layout_constraintStart_toEndOf="@id/experience_card"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/doctor_hospital" />
+
+        <TextView
+            android:id="@+id/reviews_header"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dimen_10"
+            android:text="@string/doc_reviews"
+            app:layout_constraintStart_toStartOf="@id/reviews_card"
+            app:layout_constraintEnd_toEndOf="@id/reviews_card"
+            app:layout_constraintTop_toTopOf="@id/reviews_card"/>
+
+        <ImageView
+            android:id="@+id/reviews_icon"
+            android:layout_width="@dimen/image_25"
+            android:layout_height="@dimen/image_25"
+            android:src="@mipmap/ic_launcher"
+            android:layout_marginStart="@dimen/dimen_10"
+            app:layout_constraintTop_toBottomOf="@id/reviews_header"
+            app:layout_constraintStart_toStartOf="@id/reviews_card" />
+
+        <TextView
+            android:id="@+id/reviews_counter"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/dimen_5"
+            android:text="@string/dummy_doc_reviews_counter"
+            style="@style/text_h4_dark"
+            app:layout_constraintBottom_toBottomOf="@+id/reviews_icon"
+            app:layout_constraintEnd_toEndOf="@id/reviews_card"
+            app:layout_constraintStart_toEndOf="@id/reviews_icon"
+            app:layout_constraintTop_toBottomOf="@id/reviews_header" />
+
+        <TextView
+            android:id="@+id/working_hours_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/dimen_20"
+            style="@style/text_h3_dark"
+            android:text="@string/working_hours"
+            app:layout_constraintTop_toBottomOf="@id/patients_card"/>
+
+        <TextView
+            android:id="@+id/working_hours"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/darkest_grey_alt"
+            android:paddingTop="@dimen/dimen_5"
+            android:text="@string/working_hours_dummy"
+            app:layout_constraintTop_toBottomOf="@id/working_hours_header"/>
+
+        <ImageButton
+            android:id="@+id/favorite_icon"
+            android:layout_width="@dimen/dimen_50"
+            android:layout_height="@dimen/dimen_50"
+            android:src="@mipmap/ic_launcher"
+            android:layout_marginTop="@dimen/dimen_20"
+            android:layout_marginBottom="@dimen/dimen_10"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <Button
+            android:id="@+id/book_appointment"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:text="@string/get_an_appointment"
+            android:layout_marginBottom="@dimen/dimen_10"
+            android:backgroundTint="@color/light_blue"
+            android:layout_marginStart="@dimen/dimen_10"
+            android:layout_marginEnd="@dimen/dimen_10"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="@id/favorite_icon"
+            app:layout_constraintStart_toEndOf="@id/favorite_icon"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

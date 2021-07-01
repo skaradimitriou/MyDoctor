@@ -7,4 +7,16 @@
     <string name="confirm_password_hint">Confirm Password</string>
     <string name="create_account_btn">Create account</string>
     <string name="register_btn_login_screen">Dont have an account? <b>Register</b></string>
+    <string name="dummy_doc_name">Dr. Doctor Doctoropoulos</string>
+    <string name="dummy_doc_category">Dermatologist</string>
+    <string name="dummy_doc_hospital">Geniko Nosokomeio Athinon, GNA</string>
+    <string name="dummy_doc_patients_counter">100+</string>
+    <string name="doc_experience">Experience</string>
+    <string name="doc_patient">Patients</string>
+    <string name="dummy_doc_years_experience">5+ Years</string>
+    <string name="doc_reviews">Reviews</string>
+    <string name="dummy_doc_reviews_counter">4.6</string>
+    <string name="working_hours">Working Hours</string>
+    <string name="working_hours_dummy">Mon-Friday from 9:00 to 18:00</string>
+    <string name="get_an_appointment">Get an appointment</string>
 </resources>
