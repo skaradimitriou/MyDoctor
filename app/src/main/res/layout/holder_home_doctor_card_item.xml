@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="260dp"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/dimen_10">
+
+    <View
+        android:id="@+id/doc_bg"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/light_grey"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/home_doc_img"
+        android:layout_width="100dp"
+        android:layout_height="140dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@mipmap/ic_launcher" />
+
+    <TextView
+        android:id="@+id/doctor_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/dimen_10"
+        android:paddingBottom="5dp"
+        android:text="Δρ. Γιάννης Πουλόπουλος"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/home_doc_img"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/doctor_category"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/dimen_10"
+        android:text="Δερματολόγος"
+        app:layout_constraintStart_toEndOf="@id/home_doc_img"
+        app:layout_constraintTop_toBottomOf="@id/doctor_name" />
+
+    <RatingBar
+        android:id="@+id/doctor_rating"
+        style="?android:attr/ratingBarStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimen_10"
+        android:progressBackgroundTint="@color/black"
+        android:progressTint="#fdcc0d"
+        android:rating="4.5"
+        app:layout_constraintStart_toEndOf="@id/home_doc_img"
+        app:layout_constraintTop_toBottomOf="@id/doctor_category" />
+
+    <TextView
+        android:id="@+id/doctor_experience_header"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/dimen_10"
+        android:paddingTop="@dimen/dimen_10"
+        android:text="Experience"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/home_doc_img"
+        app:layout_constraintTop_toBottomOf="@id/doctor_rating" />
+
+    <TextView
+        android:id="@+id/doctor_experience"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/dimen_10"
+        android:text="10"
+        app:layout_constraintStart_toEndOf="@id/home_doc_img"
+        app:layout_constraintTop_toBottomOf="@id/doctor_experience_header" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

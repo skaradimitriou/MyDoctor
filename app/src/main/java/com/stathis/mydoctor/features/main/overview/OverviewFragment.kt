@@ -22,22 +22,19 @@ class OverviewFragment : AbstractFragment(R.layout.fragment_overview) {
     override fun running() {
         /*
         Tasks :
-            - insert all doctor categories to firestore db - DONE
             - get the 10 most common doctor categories
             - get 10 dummy doctors in main screen
             - add a header for this screen that contains a search input field
          */
+        home_nested_recycler.adapter = viewModel.adapter
 
-        categories_button.setOnClickListener{
-            startActivity(Intent(requireContext(), CategoriesActivity::class.java))
-        }
 
-        viewModel.doctorList.observe(this, Observer{
-            Log.d("TAG", it.toString())
-        })
+//        categories_button.setOnClickListener{
+//            startActivity(Intent(requireContext(), CategoriesActivity::class.java))
+//        }
+
+        viewModel.observe(viewLifecycleOwner)
     }
 
-    override fun stopped() {
-        viewModel.doctorList.removeObservers(this)
-    }
+    override fun stopped() = viewModel.release(viewLifecycleOwner)
 }

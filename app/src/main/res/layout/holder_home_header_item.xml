@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <View
+        android:id="@+id/home_header_bg"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/image_100"
+        android:background="@color/navy_blue"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/home_header"
+        style="@style/text_h2_dark"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dimen_16"
+        android:text="Hello User!"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="@id/home_header_bg"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/home_header_bg" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
