@@ -19,4 +19,20 @@
     <string name="working_hours">Working Hours</string>
     <string name="working_hours_dummy">Mon-Friday from 9:00 to 18:00</string>
     <string name="get_an_appointment">Get an appointment</string>
+
+    <!-- Doctor Categories -->
+    <string name="pathologos">Παθολόγος</string>
+    <string name="dermatologos">Δερματολόγος</string>
+    <string name="ofthalmiatros">Οφθαλμίατρος</string>
+    <string name="orthopedikos">Ορθοπεδικός</string>
+    <string name="kardiologos">Καρδιολόγος</string>
+    <string name="wrl">Ω.Ρ.Λ.</string>
+    <string name="xeirourgos">Χειρούργος</string>
+    <string name="neurologos">Νευρολόγος</string>
+
+    <!-- Overview -->
+    <string name="doctors_category">Ειδικότητες</string>
+    <string name="doctors_header">Γιατροί</string>
+
+
 </resources>

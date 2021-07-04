@@ -4,12 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:padding="@dimen/dimen_10">
+    android:paddingStart="@dimen/dimen_10"
+    android:paddingEnd="@dimen/dimen_10">
 
     <View
+        android:id="@+id/background"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@color/light_grey"
+        android:background="@drawable/round_corners"
+        android:backgroundTint="@color/light_grey"
         app:layout_constraintEnd_toEndOf="@id/home_category_img"
         app:layout_constraintBottom_toBottomOf="@id/home_category"
         app:layout_constraintStart_toStartOf="parent"
@@ -17,12 +20,13 @@
 
     <ImageView
         android:id="@+id/home_category_img"
-        android:layout_width="120dp"
-        android:layout_height="@dimen/image_100"
-        android:scaleType="centerCrop"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:src="@mipmap/ic_launcher" />
+        android:layout_width="@dimen/dimen_110"
+        android:layout_height="@dimen/dimen_60"
+        android:layout_margin="@dimen/dimen_10"
+        app:layout_constraintStart_toStartOf="@id/background"
+        app:layout_constraintTop_toTopOf="@id/background"
+        app:layout_constraintEnd_toEndOf="@id/background"
+        tools:src="@drawable/ic_orthopedics" />
 
     <TextView
         android:id="@+id/home_category"
@@ -35,6 +39,6 @@
         app:layout_constraintEnd_toEndOf="@id/home_category_img"
         app:layout_constraintStart_toStartOf="@id/home_category_img"
         app:layout_constraintTop_toBottomOf="@id/home_category_img"
-        tools:text="Οφθαλμίατρος" />
+        tools:text="@string/ofthalmiatros" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
