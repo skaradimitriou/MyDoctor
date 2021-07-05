@@ -14,4 +14,5 @@
     <dimen name="image_25">25dp</dimen>
     <dimen name="dimen_60">60dp</dimen>
     <dimen name="dimen_110">110dp</dimen>
+    <dimen name="dimen_200">200dp</dimen>
 </resources>

@@ -9,6 +9,7 @@ import com.stathis.mydoctor.abstraction.ItemClickListener
 import com.stathis.mydoctor.abstraction.LocalModel
 import com.stathis.mydoctor.models.Category
 import com.stathis.mydoctor.models.Doctor
+import com.stathis.mydoctor.models.PromoItem
 
 class OverviewChildAdapter(private val callback : ItemClickListener) : ListAdapter<LocalModel, OverviewChildViewHolder>(DiffUtilClass<LocalModel>()) {
 
@@ -25,6 +26,7 @@ class OverviewChildAdapter(private val callback : ItemClickListener) : ListAdapt
         return when(getItem(position)){
             is Doctor -> R.layout.holder_home_doctor_card_item
             is Category -> R.layout.holder_home_category_item
+            is PromoItem -> R.layout.holder_home_promo_item
             else -> R.layout.holder_empty_layout
         }
     }

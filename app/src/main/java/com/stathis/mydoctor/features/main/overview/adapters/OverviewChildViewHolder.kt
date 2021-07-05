@@ -7,8 +7,10 @@ import com.stathis.mydoctor.abstraction.ItemClickListener
 import com.stathis.mydoctor.abstraction.LocalModel
 import com.stathis.mydoctor.models.Category
 import com.stathis.mydoctor.models.Doctor
+import com.stathis.mydoctor.models.PromoItem
 import kotlinx.android.synthetic.main.holder_home_category_item.view.*
 import kotlinx.android.synthetic.main.holder_home_doctor_card_item.view.*
+import kotlinx.android.synthetic.main.holder_home_promo_item.view.*
 
 class OverviewChildViewHolder(itemView : View, callback : ItemClickListener) : AbstractViewHolder(itemView,callback) {
 
@@ -25,6 +27,10 @@ class OverviewChildViewHolder(itemView : View, callback : ItemClickListener) : A
             is Category -> {
                 itemView.home_category_img.setImageResource(data.image)
                 itemView.home_category.text = data.description
+            }
+
+            is PromoItem -> {
+                itemView.promo_item_header.text = data.promo_text
             }
         }
     }

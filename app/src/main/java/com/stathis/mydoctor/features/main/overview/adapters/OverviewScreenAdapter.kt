@@ -9,6 +9,7 @@ import com.stathis.mydoctor.abstraction.ItemClickListener
 import com.stathis.mydoctor.abstraction.LocalModel
 import com.stathis.mydoctor.features.main.overview.model.CategoryParent
 import com.stathis.mydoctor.features.main.overview.model.DoctorParent
+import com.stathis.mydoctor.features.main.overview.model.PromoParent
 import com.stathis.mydoctor.models.HeaderModel
 
 class OverviewScreenAdapter(private val callback : ItemClickListener) : ListAdapter<LocalModel, OverviewScreenViewHolder>(DiffUtilClass<LocalModel>()) {
@@ -27,6 +28,7 @@ class OverviewScreenAdapter(private val callback : ItemClickListener) : ListAdap
             is HeaderModel -> R.layout.holder_home_header_item
             is CategoryParent -> R.layout.holder_nested_parent_item
             is DoctorParent -> R.layout.holder_nested_parent_item
+            is PromoParent -> R.layout.holder_nested_parent_viewpager
             else -> R.layout.holder_empty_layout
         }
     }

@@ -11,15 +11,16 @@ import com.stathis.mydoctor.callbacks.HomeClickListener
 import com.stathis.mydoctor.features.main.overview.adapters.OverviewScreenAdapter
 import com.stathis.mydoctor.features.main.overview.model.CategoryParent
 import com.stathis.mydoctor.features.main.overview.model.DoctorParent
+import com.stathis.mydoctor.features.main.overview.model.PromoParent
 import com.stathis.mydoctor.models.Category
 import com.stathis.mydoctor.models.Doctor
 import com.stathis.mydoctor.models.HeaderModel
+import com.stathis.mydoctor.models.PromoItem
 
 class OverviewViewModel(app : Application) : AndroidViewModel(app), ItemClickListener {
 
-    private val firestore by lazy { FirebaseFirestore.getInstance() }
     val resources = app.resources
-
+    private val firestore by lazy { FirebaseFirestore.getInstance() }
     val adapter = OverviewScreenAdapter(this)
     val overviewList = MutableLiveData<List<LocalModel>>()
     private lateinit var callback : HomeClickListener
@@ -48,6 +49,12 @@ class OverviewViewModel(app : Application) : AndroidViewModel(app), ItemClickLis
     }
 
     fun initDummyList() {
+
+        val promoList = listOf(
+            PromoItem("This is a header","", R.drawable.ic_stethoscope),
+            PromoItem("This is a header","",R.drawable.ic_stethoscope),
+            PromoItem("This is a header","", R.drawable.ic_stethoscope))
+
         val doctorList = listOf(
             Doctor("Γιάννης Παπαδόπουλος", "https://post.medicalnewstoday.com/wp-content/uploads/2019/01/Male_Doctor_732x549-thumbnail.jpg", 4.6, "6934567143", "Ορθοπεδικός", 10),
             Doctor("Γιάννης Παπαδόπουλος", "https://post.medicalnewstoday.com/wp-content/uploads/2019/01/Male_Doctor_732x549-thumbnail.jpg", 4.6, "6934567143", "Ορθοπεδικός", 10),
@@ -70,6 +77,7 @@ class OverviewViewModel(app : Application) : AndroidViewModel(app), ItemClickLis
 
         val list = listOf(
             HeaderModel(),
+            PromoParent(promoList),
             CategoryParent(resources.getString(R.string.doctors_category), categories),
             DoctorParent(resources.getString(R.string.doctors_header), doctorList)
         )
