@@ -3,10 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/app_nav.xml"
-    app:startDestination="@id/overviewFragment">
+    app:startDestination="@id/nav_home">
 
     <fragment
-        android:id="@+id/appointmentsFragment"
+        android:id="@+id/nav_appointments"
         android:name="com.stathis.mydoctor.features.main.appointments.AppointmentsFragment"
         android:label="fragment_appointments"
         tools:layout="@layout/fragment_appointments" />
@@ -16,12 +16,12 @@
         android:label="fragment_favorites"
         tools:layout="@layout/fragment_favorites" />
     <fragment
-        android:id="@+id/overviewFragment"
+        android:id="@+id/nav_home"
         android:name="com.stathis.mydoctor.features.main.overview.OverviewFragment"
         android:label="fragment_overview"
         tools:layout="@layout/fragment_overview" />
     <fragment
-        android:id="@+id/searchFragment"
+        android:id="@+id/nav_search"
         android:name="com.stathis.mydoctor.features.main.search.SearchFragment"
         android:label="fragment_search"
         tools:layout="@layout/fragment_search" />
