@@ -9,6 +9,7 @@ import com.stathis.mydoctor.abstraction.ItemClickListener
 import com.stathis.mydoctor.abstraction.LocalModel
 import com.stathis.mydoctor.features.main.appointments.adapter.AppointmentsAdapter
 import com.stathis.mydoctor.models.Appointment
+import com.stathis.mydoctor.models.EmptyModel
 
 class AppointmentsViewModel : ViewModel(), ItemClickListener {
 
@@ -33,8 +34,15 @@ class AppointmentsViewModel : ViewModel(), ItemClickListener {
 
     fun observe(owner : LifecycleOwner){
         list.observe(owner, Observer{
-            it?.let { adapter.submitList(it) }
+            when(it.isNullOrEmpty()){
+                true -> submitEmptyList()
+                false -> adapter.submitList(it)
+            }
         })
+    }
+
+    private fun submitEmptyList() {
+        adapter.submitList(listOf(EmptyModel("You have no appointments yet.")))
     }
 
     fun release(owner: LifecycleOwner) = list.removeObservers(owner)

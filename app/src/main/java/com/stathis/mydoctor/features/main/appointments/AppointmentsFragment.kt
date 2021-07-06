@@ -1,8 +1,10 @@
 package com.stathis.mydoctor.features.main.appointments
 
+import android.content.Intent
 import androidx.lifecycle.ViewModelProvider
 import com.stathis.mydoctor.R
 import com.stathis.mydoctor.abstraction.AbstractFragment
+import com.stathis.mydoctor.features.appointments.AppointmentsActivity
 import kotlinx.android.synthetic.main.fragment_appointments.*
 
 
@@ -28,9 +30,7 @@ class AppointmentsFragment : AbstractFragment(R.layout.fragment_appointments) {
         appointments_recycler.adapter = viewModel.adapter
 
         new_appointment.setOnClickListener{
-           /*
-           Go to appointment activity
-            */
+           startActivity(Intent(requireContext(),AppointmentsActivity::class.java))
         }
 
         viewModel.observe(this)
