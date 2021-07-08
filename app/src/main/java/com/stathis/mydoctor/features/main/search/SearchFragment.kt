@@ -31,6 +31,8 @@ class SearchFragment : AbstractFragment(R.layout.fragment_search) {
     override fun running() {
         manageSearch()
 
+        search_recycler.adapter = viewModel.adapter
+
         viewModel.bindCallbacks(object : SearchClickListener{
             override fun onDoctorTap(doc: Doctor) {
                 //gotoDoctor
@@ -60,6 +62,10 @@ class SearchFragment : AbstractFragment(R.layout.fragment_search) {
                 search_searchbar.clearFocus()
                 search_searchbar.setQuery("", false)
                 Log.d("HELLO", query.toString())
+
+                //viewModel.saveQueryToDatabase()
+                viewModel.getResultsForQuery(query.toString())
+
                 return true
             }
 

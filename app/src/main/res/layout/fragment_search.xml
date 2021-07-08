@@ -5,13 +5,15 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/light_grey"
+    android:paddingTop="@dimen/dimen_10"
+    android:paddingStart="@dimen/dimen_10"
+    android:paddingEnd="@dimen/dimen_10"
     tools:context=".features.main.search.SearchFragment">
 
     <androidx.appcompat.widget.SearchView
         android:id="@+id/search_searchbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/dimen_10"
         android:background="@drawable/round_corners"
         android:backgroundTint="@color/white"
         android:focusable="true"
