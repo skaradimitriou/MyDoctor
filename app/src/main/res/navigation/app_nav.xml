@@ -10,11 +10,7 @@
         android:name="com.stathis.mydoctor.features.main.appointments.AppointmentsFragment"
         android:label="fragment_appointments"
         tools:layout="@layout/fragment_appointments" />
-    <fragment
-        android:id="@+id/favoritesFragment"
-        android:name="com.stathis.mydoctor.features.main.favorites.FavoritesFragment"
-        android:label="fragment_favorites"
-        tools:layout="@layout/fragment_favorites" />
+
     <fragment
         android:id="@+id/nav_home"
         android:name="com.stathis.mydoctor.features.main.overview.OverviewFragment"
@@ -25,9 +21,5 @@
         android:name="com.stathis.mydoctor.features.main.search.SearchFragment"
         android:label="fragment_search"
         tools:layout="@layout/fragment_search" />
-    <fragment
-        android:id="@+id/settingsFragment"
-        android:name="com.stathis.mydoctor.features.main.settings.SettingsFragment"
-        android:label="fragment_settings"
-        tools:layout="@layout/fragment_settings" />
+
 </navigation>

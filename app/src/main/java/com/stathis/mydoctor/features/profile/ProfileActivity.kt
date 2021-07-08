@@ -12,15 +12,11 @@ class ProfileActivity : AbstractActivity(R.layout.activity_profile) {
         viewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
 
         /*
-        As a user, I want to have a clean screen with the following options:
-        - Enter my login data (email, password)
-        - Login Button
-
-        Also: The following functionalities need to be implemented:
-        - Validate user input
-        - Check if passwords match and if it is a strong password
-        - Authenticate user to the app
-
+        As a user, I want to:
+            - view my profile
+            - be able to upload a photo to my profile
+            - be able to view my personal data
+            - be able to change my personal data if I want to
          */
     }
 
