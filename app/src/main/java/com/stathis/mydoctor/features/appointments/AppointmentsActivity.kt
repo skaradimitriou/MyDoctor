@@ -7,7 +7,7 @@ import com.stathis.mydoctor.abstraction.AbstractActivity
 
 class AppointmentsActivity : AbstractActivity(R.layout.activity_appointments) {
 
-    private lateinit var viewModel : AppointmentScreenViewModel
+    private lateinit var viewModel: AppointmentScreenViewModel
 
     override fun init() {
         /*
@@ -26,9 +26,10 @@ class AppointmentsActivity : AbstractActivity(R.layout.activity_appointments) {
     override fun running() {
         verifyAppointmentInfo()
 
-        viewModel.appointmentSaved.observe(this, Observer{
-            when(it){
-                true -> {} // Show snackbar
+        viewModel.appointmentSaved.observe(this, Observer {
+            when (it) {
+                true -> {
+                } // Show snackbar
                 false -> Unit
             }
         })
@@ -39,6 +40,20 @@ class AppointmentsActivity : AbstractActivity(R.layout.activity_appointments) {
             Logic: Bind data to the UI
             -> add a button in the bottom for him to add his appointment
          */
+
+        //        val dateRangePicker = MaterialDatePicker.Builder.datePicker()
+//            .setTitleText("Ημερομηνία Ραντεβού")
+//            .build()
+
+        //new_appointment.setOnClickListener{
+//            dateRangePicker.show(requireActivity().supportFragmentManager,"SELECT DATES")
+//            dateRangePicker.addOnPositiveButtonClickListener {
+//                    Log.d("",it.toString())
+//            }
+//
+//            Log.d("",dateRangePicker.toString())
+        //startActivity(Intent(requireContext(),AppointmentsActivity::class.java))
+        //}
     }
 
     override fun stopped() = viewModel.appointmentSaved.removeObservers(this)

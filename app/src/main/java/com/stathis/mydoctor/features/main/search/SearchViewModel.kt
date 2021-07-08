@@ -37,6 +37,7 @@ class SearchViewModel : ViewModel(), ItemClickListener {
             Query("doctor 4"),
             Query("doctor 5")
         )
+
         adapter.submitList(queryList)
     }
 

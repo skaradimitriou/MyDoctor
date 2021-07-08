@@ -7,6 +7,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import com.stathis.mydoctor.abstraction.ItemClickListener
 import com.stathis.mydoctor.abstraction.LocalModel
+import com.stathis.mydoctor.callbacks.AppointmentClickListener
 import com.stathis.mydoctor.features.main.appointments.adapter.AppointmentsAdapter
 import com.stathis.mydoctor.models.Appointment
 import com.stathis.mydoctor.models.EmptyModel
@@ -15,6 +16,7 @@ class AppointmentsViewModel : ViewModel(), ItemClickListener {
 
     private val list = MutableLiveData<List<LocalModel>>()
     val adapter = AppointmentsAdapter(this)
+    private lateinit var callback : AppointmentClickListener
 
     init {
         createDummyList()
@@ -30,6 +32,10 @@ class AppointmentsViewModel : ViewModel(), ItemClickListener {
             Appointment("","","","My 6th Appointment"))
 
         list.value = appointmentList
+    }
+
+    fun bindCallbacks(callback : AppointmentClickListener) {
+        this.callback = callback
     }
 
     fun observe(owner : LifecycleOwner){
@@ -48,7 +54,7 @@ class AppointmentsViewModel : ViewModel(), ItemClickListener {
     fun release(owner: LifecycleOwner) = list.removeObservers(owner)
     override fun onItemTap(view: View) {
         when(view.tag){
-            is Appointment -> {}
+            is Appointment -> callback.onAppointmentTap(view.tag as Appointment)
         }
     }
 }

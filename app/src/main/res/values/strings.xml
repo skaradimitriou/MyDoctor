@@ -33,6 +33,9 @@
     <!-- Overview -->
     <string name="doctors_category">Ειδικότητες</string>
     <string name="doctors_header">Γιατροί</string>
+    <string name="nav_home">Home</string>
+    <string name="nav_search">Search</string>
+    <string name="nav_appointments">Appointments</string>
 
 
 </resources>

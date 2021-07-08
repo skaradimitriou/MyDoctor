@@ -6,7 +6,10 @@ import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.stathis.mydoctor.R
 import com.stathis.mydoctor.abstraction.AbstractFragment
+import com.stathis.mydoctor.callbacks.AppointmentClickListener
+import com.stathis.mydoctor.features.appointment_details.AppointmentDetailsActivity
 import com.stathis.mydoctor.features.appointments.AppointmentsActivity
+import com.stathis.mydoctor.models.Appointment
 import kotlinx.android.synthetic.main.fragment_appointments.*
 
 
@@ -16,32 +19,21 @@ class AppointmentsFragment : AbstractFragment(R.layout.fragment_appointments) {
 
     override fun init() {
         viewModel = ViewModelProvider(this).get(AppointmentsViewModel::class.java)
-
-        /*
-        This screen needs to have a list of my appointments
-
-        Logic:
-            - If I have no appointments, then I need a proper indicator on screen
-            - Fab button to add a new appointment
-            - Calendar indicator on top of the month (?) or week (?)
-         */
     }
 
     override fun running() {
         appointments_recycler.adapter = viewModel.adapter
 
-        val dateRangePicker = MaterialDatePicker.Builder.datePicker()
-            .setTitleText("Ημερομηνία Ραντεβού")
-            .build()
+        viewModel.bindCallbacks(object : AppointmentClickListener {
+            override fun onAppointmentTap(event: Appointment) {
+                startActivity(Intent(requireContext(), AppointmentDetailsActivity::class.java).also{
+                    it.putExtra("TEST",event.description)
+                })
+            }
+        })
 
         new_appointment.setOnClickListener{
-            dateRangePicker.show(requireActivity().supportFragmentManager,"SELECT DATES")
-            dateRangePicker.addOnPositiveButtonClickListener {
-                    Log.d("",it.toString())
-            }
-
-            Log.d("",dateRangePicker.toString())
-           //startActivity(Intent(requireContext(),AppointmentsActivity::class.java))
+           startActivity(Intent(requireContext(),AppointmentsActivity::class.java))
         }
 
         viewModel.observe(this)
