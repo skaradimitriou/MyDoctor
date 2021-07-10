@@ -10,9 +10,10 @@
         style="@style/text_h3_dark"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="@dimen/dimen_16"
         android:paddingStart="@dimen/dimen_10"
+        android:paddingTop="@dimen/dimen_16"
         android:paddingBottom="@dimen/dimen_10"
+        app:layout_constraintEnd_toStartOf="@id/all_categories"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="This is a h2 header" />
@@ -22,8 +23,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@id/nested_header"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintStart_toStartOf="parent"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+        app:layout_constraintTop_toBottomOf="@id/nested_header" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

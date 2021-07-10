@@ -28,9 +28,11 @@ class OverviewFragment : AbstractFragment(R.layout.fragment_overview) {
 
     override fun running() {
         /*
-        Tasks :
-            - add 3 main promo tiles with a ViewPager
+        FIXME
             - fix the UI for doctors to be more good-looking
+            - Add a lazy loading effect
+            - Add all categories so I can click on it and open categories screen
+            - Add all doctors so I can click and get all doctors (?)
          */
 
         home_nested_recycler.adapter = viewModel.adapter

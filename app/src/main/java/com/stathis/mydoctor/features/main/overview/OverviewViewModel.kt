@@ -1,9 +1,11 @@
 package com.stathis.mydoctor.features.main.overview
 
 import android.app.Application
+import android.util.Log
 import android.view.View
 import androidx.lifecycle.*
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Source
 import com.stathis.mydoctor.R
 import com.stathis.mydoctor.abstraction.ItemClickListener
 import com.stathis.mydoctor.abstraction.LocalModel
@@ -12,10 +14,10 @@ import com.stathis.mydoctor.features.main.overview.adapters.OverviewScreenAdapte
 import com.stathis.mydoctor.features.main.overview.model.CategoryParent
 import com.stathis.mydoctor.features.main.overview.model.DoctorParent
 import com.stathis.mydoctor.features.main.overview.model.PromoParent
-import com.stathis.mydoctor.models.Category
-import com.stathis.mydoctor.models.Doctor
-import com.stathis.mydoctor.models.HeaderModel
-import com.stathis.mydoctor.models.PromoItem
+import com.stathis.mydoctor.models.*
+import com.stathis.mydoctor.utils.DEFAULT_IMG
+import com.stathis.mydoctor.utils.DEFAULT_USERNAME
+import com.stathis.mydoctor.utils.TAG
 
 class OverviewViewModel(app : Application) : AndroidViewModel(app), ItemClickListener {
 
@@ -26,30 +28,15 @@ class OverviewViewModel(app : Application) : AndroidViewModel(app), ItemClickLis
     private lateinit var callback : HomeClickListener
 
     init {
-        initDummyList()
+        initDummyList(User(DEFAULT_USERNAME, DEFAULT_IMG))
+        getUserData()
     }
-
-//    fun getDoctors() {
-//        firestore.collection("doctors").get(Source.SERVER).addOnSuccessListener { docs ->
-//            val doctors = arrayListOf<Doctor>()
-//            for (document in docs) {
-//                Log.d("TAG", "${document.id} => ${document.data}")
-//                val doctor = document.toObject(Doctor::class.java)
-//                doctors.add(doctor)
-//            }
-//
-//            doctorList.value = doctors
-//        }.addOnFailureListener {
-//            Log.d("TAG", "Error getting documents: ", it)
-//        }
-//    }
 
     fun bindCallbacks(callback : HomeClickListener){
         this.callback = callback
     }
 
-    fun initDummyList() {
-
+    fun initDummyList(user : User) {
         val promoList = listOf(
             PromoItem("This is a header","", R.drawable.ic_stethoscope),
             PromoItem("This is a header","",R.drawable.ic_stethoscope),
@@ -76,13 +63,32 @@ class OverviewViewModel(app : Application) : AndroidViewModel(app), ItemClickLis
         )
 
         val list = listOf(
-            HeaderModel(),
+            HeaderModel(user),
             PromoParent(promoList),
             CategoryParent(resources.getString(R.string.doctors_category), categories),
             DoctorParent(resources.getString(R.string.doctors_header), doctorList)
         )
 
         overviewList.value = list
+    }
+
+    private fun getUserData() {
+        firestore.collection("users").document("uCAIilCFU0673H3S3Lyo").get()
+            .addOnCompleteListener { task ->
+                when (task.isSuccessful) {
+                    true -> {
+                        val result = task.result
+                        Log.d(TAG, "${result?.id} => ${result?.data}")
+                        val user = result!!.toObject(User::class.java)!!
+
+                        initDummyList(user)
+                    }
+                    false -> {
+                        // handle this
+                        Log.d(TAG, task.toString())
+                    }
+                }
+            }
     }
 
     fun observe(owner : LifecycleOwner){
