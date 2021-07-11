@@ -6,8 +6,10 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Source
+import com.google.gson.Gson
 import com.stathis.mydoctor.abstraction.ItemClickListener
 import com.stathis.mydoctor.abstraction.LocalModel
 import com.stathis.mydoctor.callbacks.SearchClickListener
@@ -21,36 +23,68 @@ import com.stathis.mydoctor.utils.TAG
 class SearchViewModel : ViewModel(), ItemClickListener {
 
     val firestore = FirebaseFirestore.getInstance()
+    val auth by lazy { FirebaseAuth.getInstance() }
     val adapter = SearchParentAdapter(this)
     val data = MutableLiveData<List<LocalModel>>()
+    private var queryList = mutableListOf<LocalModel>()
     private lateinit var callback: SearchClickListener
 
     init {
         getUserQueries()
     }
 
-    private fun getUserQueries() {
-        val queryList = listOf(
-            Query("doctor 1"),
-            Query("doctor 2"),
-            Query("doctor 3"),
-            Query("doctor 4"),
-            Query("doctor 5")
-        )
-
-        adapter.submitList(queryList)
-    }
-
     fun bindCallbacks(callback: SearchClickListener) {
         this.callback = callback
     }
 
-    fun observe(owner: LifecycleOwner) {
-        data.observe(owner, Observer {
-            Log.d(TAG, it.toString())
-            adapter.submitList(it)
-        })
+    fun getUserQueries() {
+        val documentReference = firestore.collection("saved_queries")
+            .document(auth.currentUser!!.uid).addSnapshotListener { p0, p1 ->
+                Log.d("", p0?.data.toString())
+
+                p0?.data?.toList()?.forEach {
+                    Log.d("", it.first.toString())
+                    Log.d("", it.second.toString())
+
+                    val json = Gson().toJsonTree(it.second)
+                    Log.d("", json.toString())
+                    queryList = Gson().fromJson(json, Array<Query>::class.java).toMutableList()
+
+                    Log.d("", queryList.toString())
+                    bindUserQueries()
+                }
+            }
     }
+
+    private fun bindUserQueries() {
+        adapter.submitList(queryList)
+        adapter.notifyDataSetChanged()
+    }
+
+    fun insertQueryToDb(query: Query) {
+        val documentReference = firestore.collection("saved_queries").document(auth.currentUser!!.uid)
+
+        when (queryList.size >= 9) {
+            true -> {
+                queryList.remove(queryList.last())
+                queryList.add(0, query)
+            }
+            false -> queryList.add(0, query)
+        }
+
+
+        val data = hashMapOf<String, Any>(
+            "queryList" to queryList
+        )
+
+        documentReference.set(data).addOnSuccessListener {
+            Log.d("TAG", "OK")
+        }.addOnFailureListener {
+            Log.d("TAG", "NOT OK")
+        }
+        getUserQueries()
+    }
+
 
     fun getResultsForQuery(query: String) {
         firestore.collection("doctors").get(Source.SERVER).addOnSuccessListener { docs ->
@@ -80,12 +114,18 @@ class SearchViewModel : ViewModel(), ItemClickListener {
         //adapter.submitList(listOf(EmptyModel("No results found")))
     }
 
+    fun observe(owner: LifecycleOwner) {
+        data.observe(owner, Observer {
+            Log.d(TAG, it.toString())
+            adapter.submitList(it)
+        })
+    }
+
     fun release(owner: LifecycleOwner) = data.removeObservers(owner)
 
     override fun onItemTap(view: View) {
         when (view.tag) {
             is Query -> callback.onQueryTap(view.tag as Query)
-            is Category -> callback.onCategoryTap(view.tag as Category)
             is Doctor -> callback.onDoctorTap(view.tag as Doctor)
         }
     }

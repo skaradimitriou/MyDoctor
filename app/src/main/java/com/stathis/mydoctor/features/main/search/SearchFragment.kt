@@ -1,11 +1,14 @@
 package com.stathis.mydoctor.features.main.search
 
+import android.content.Intent
 import android.util.Log
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.ViewModelProvider
+import com.google.gson.Gson
 import com.stathis.mydoctor.R
 import com.stathis.mydoctor.abstraction.AbstractFragment
 import com.stathis.mydoctor.callbacks.SearchClickListener
+import com.stathis.mydoctor.features.doctor.DoctorActivity
 import com.stathis.mydoctor.models.Category
 import com.stathis.mydoctor.models.Doctor
 import com.stathis.mydoctor.models.Query
@@ -18,14 +21,6 @@ class SearchFragment : AbstractFragment(R.layout.fragment_search) {
 
     override fun init() {
         viewModel = ViewModelProvider(this).get(SearchViewModel::class.java)
-
-    /*
-        As a user I want to:
-
-            - Be able to search doctors by name (?) - fullname (?)
-            - Be able to view my recent queries
-            - Be able to search for a category in a specific location (?)
-         */
     }
 
     override fun running() {
@@ -34,21 +29,14 @@ class SearchFragment : AbstractFragment(R.layout.fragment_search) {
         search_recycler.adapter = viewModel.adapter
 
         viewModel.bindCallbacks(object : SearchClickListener{
-            override fun onDoctorTap(doc: Doctor) {
-                //gotoDoctor
-            }
-
-            override fun onCategoryTap(category: Category) {
-                //load category results
-            }
-
-            override fun onQueryTap(query: Query) {
-                // load results for this query
-            }
+            override fun onDoctorTap(doc: Doctor) = openDoctorScreen(doc)
+            override fun onQueryTap(query: Query) = viewModel.getResultsForQuery(query.query)
         })
 
         viewModel.observe(this)
     }
+
+    override fun stopped() = viewModel.release(this)
 
     private fun manageSearch() {
         search_searchbar.setOnClickListener {
@@ -63,8 +51,7 @@ class SearchFragment : AbstractFragment(R.layout.fragment_search) {
                 search_searchbar.setQuery("", false)
                 Log.d("HELLO", query.toString())
 
-                //viewModel.saveQueryToDatabase()
-                viewModel.getResultsForQuery(query.toString())
+                viewModel.insertQueryToDb(Query(query.toString()))
 
                 return true
             }
@@ -75,5 +62,10 @@ class SearchFragment : AbstractFragment(R.layout.fragment_search) {
         })
     }
 
-    override fun stopped() = viewModel.release(this)
+    private fun openDoctorScreen(doctor: Doctor) {
+        val model = Gson().toJson(doctor)
+        startActivity(Intent(requireContext(), DoctorActivity::class.java).also{
+            it.putExtra("DOCTOR",model)
+        })
+    }
 }

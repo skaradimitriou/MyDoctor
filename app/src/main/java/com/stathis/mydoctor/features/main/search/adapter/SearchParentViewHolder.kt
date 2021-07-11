@@ -23,7 +23,7 @@ class SearchParentViewHolder(itemView : View, callback : ItemClickListener) : Ab
                 Glide.with(itemView).load(data.image).into(itemView.doctor_img)
             }
 
-            is Query -> itemView.search_results_item_label.text = data.queryName
+            is Query -> itemView.search_results_item_label.text = data.query
         }
     }
 }

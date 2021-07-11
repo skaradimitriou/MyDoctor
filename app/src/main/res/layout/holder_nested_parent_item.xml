@@ -13,7 +13,6 @@
         android:paddingStart="@dimen/dimen_10"
         android:paddingTop="@dimen/dimen_16"
         android:paddingBottom="@dimen/dimen_10"
-        app:layout_constraintEnd_toStartOf="@id/all_categories"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="This is a h2 header" />
