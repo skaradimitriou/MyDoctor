@@ -7,6 +7,8 @@ import com.stathis.mydoctor.R
 import com.stathis.mydoctor.abstraction.DiffUtilClass
 import com.stathis.mydoctor.abstraction.ItemClickListener
 import com.stathis.mydoctor.abstraction.LocalModel
+import com.stathis.mydoctor.features.main.search.models.EmptyQuery
+import com.stathis.mydoctor.features.main.search.models.EmptyResult
 import com.stathis.mydoctor.models.Doctor
 import com.stathis.mydoctor.models.Query
 
@@ -25,6 +27,8 @@ class SearchParentAdapter(private val callback : ItemClickListener) : ListAdapte
         return when(getItem(position)){
             is Doctor -> R.layout.holder_doctor_results_item
             is Query -> R.layout.holder_query_item
+            is EmptyResult -> R.layout.holder_no_results_found_item
+            is EmptyQuery -> R.layout.holder_no_results_found_item
             else -> R.layout.holder_empty_layout
         }
     }

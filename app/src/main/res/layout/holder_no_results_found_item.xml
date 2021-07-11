@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <View
+        android:id="@+id/message_bg"
+        android:layout_width="match_parent"
+        android:background="@drawable/round_corners"
+        android:layout_height="@dimen/dimen_230"
+        app:layout_constraintTop_toTopOf="parent"
+        android:backgroundTint="@color/white"
+        android:layout_margin="@dimen/dimen_16"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/message_animation"
+        android:layout_width="@dimen/image_100"
+        android:layout_height="@dimen/image_100"
+        android:layout_marginTop="@dimen/dimen_16"
+        app:layout_constraintEnd_toEndOf="@id/message_bg"
+        app:layout_constraintStart_toStartOf="@id/message_bg"
+        app:layout_constraintTop_toTopOf="@id/message_bg"
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="query.json"
+        app:lottie_loop="true" />
+
+    <TextView
+        android:id="@+id/message_header"
+        style="@style/text_h3_dark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dimen_10"
+        app:layout_constraintEnd_toEndOf="@id/message_bg"
+        app:layout_constraintStart_toStartOf="@id/message_bg"
+        app:layout_constraintTop_toBottomOf="@+id/message_animation"
+        tools:text="No results found" />
+
+    <TextView
+        android:id="@+id/message_desc"
+        android:layout_width="0dp"
+        android:padding="@dimen/dimen_10"
+        android:gravity="center_horizontal"
+        tools:text="We couldn't find something for this query.\n Please try again"
+        app:layout_constraintEnd_toEndOf="@id/message_bg"
+        app:layout_constraintStart_toStartOf="@id/message_bg"
+        app:layout_constraintTop_toBottomOf="@id/message_header"
+        android:layout_height="wrap_content"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
