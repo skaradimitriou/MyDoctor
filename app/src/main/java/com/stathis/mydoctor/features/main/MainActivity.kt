@@ -3,6 +3,7 @@ package com.stathis.mydoctor.features.main
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.auth.FirebaseAuth
 import com.stathis.mydoctor.R
 import com.stathis.mydoctor.abstraction.AbstractActivity
 

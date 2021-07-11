@@ -9,16 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyDoctor">
-        <activity android:name=".features.appointment_details.AppointmentDetailsActivity"></activity>
+        <activity android:name=".features.appointment_details.AppointmentDetailsActivity"/>
         <activity android:name=".features.appointments.AppointmentsActivity" />
         <activity android:name=".features.results.DoctorResultsActivity" />
         <activity android:name=".features.caterories.CategoriesActivity" />
         <activity android:name=".features.main.MainActivity" />
-        <activity android:name=".features.register.RegisterActivity" />
+        <activity android:name=".features.register.RegisterActivity" android:windowSoftInputMode="adjustPan" />
         <activity android:name=".features.profile.ProfileActivity" />
-        <activity android:name=".features.login.LoginActivity" />
         <activity android:name=".features.doctor.DoctorActivity" />
-        <activity android:name=".features.intro.IntroActivity">
+        <activity android:name=".features.login.LoginActivity" android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

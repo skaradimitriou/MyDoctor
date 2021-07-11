@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
+    android:padding="@dimen/dimen_16"
+    android:background="@color/app_bg"
     tools:context=".features.login.LoginActivity">
 
     <ImageView
@@ -13,8 +14,7 @@
         android:layout_height="@dimen/image_85"
         android:layout_marginTop="@dimen/dimen_30"
         android:contentDescription="@string/app_name"
-        android:scaleType="fitXY"
-        android:src="@mipmap/ic_launcher"
+        android:background="@drawable/ic_stethoscope"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -23,52 +23,63 @@
         android:id="@+id/login_app_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dimen_16"
-        android:text="My Doctor"
+        android:text="@string/my_doctor"
+        style="@style/text_h2_dark"
         android:padding="@dimen/dimen_16"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/login_img" />
 
-    <EditText
-        android:id="@+id/email_input_field"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/emailField"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dimen_50"
-        android:backgroundTint="@color/navy_blue"
+        android:layout_marginTop="@dimen/dimen_20"
         android:hint="@string/e_mail_hint"
-        android:inputType="textEmailAddress"
-        android:textColorHint="@color/dark_grey"
-        app:layout_constraintTop_toBottomOf="@id/login_app_name" />
+        app:layout_constraintTop_toBottomOf="@id/login_app_name">
 
-    <EditText
-        android:id="@+id/pass_input_field"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/email_input_field"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/passField"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dimen_16"
-        android:backgroundTint="@color/navy_blue"
+        android:layout_marginTop="@dimen/dimen_20"
         android:hint="@string/pass_hint"
-        android:inputType="textPassword"
-        android:textColorHint="@color/dark_grey"
-        app:layout_constraintTop_toBottomOf="@id/email_input_field" />
+        app:layout_constraintTop_toBottomOf="@id/emailField">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/pass_input_field"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:background="@color/white" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/login_btn"
         android:layout_width="0dp"
-        android:layout_height="56dp"
+        android:layout_height="@dimen/default_btn_height"
         android:layout_marginTop="@dimen/dimen_30"
-        android:backgroundTint="@color/navy_blue"
-        android:text="Login"
+        android:backgroundTint="@color/ocean_blue"
+        android:text="@string/login_btn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/pass_input_field" />
+        app:layout_constraintTop_toBottomOf="@id/passField" />
 
     <TextView
         android:id="@+id/forgot_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/dimen_10"
-        android:text="Forgot your password?"
+        android:text="@string/forgot_your_password"
         app:layout_constraintTop_toBottomOf="@id/login_btn" />
 
     <TextView
@@ -76,6 +87,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
+        android:padding="@dimen/dimen_10"
         android:text="@string/register_btn_login_screen"
         app:layout_constraintBottom_toBottomOf="parent" />
 

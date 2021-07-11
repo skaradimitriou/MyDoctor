@@ -8,6 +8,9 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
+    <!-- background colors -->
+    <color name="app_bg">#f5f5f5</color>
+
     <!-- Blueish Color Palette -->
     <color name="dark_blue">#053742</color>
     <color name="light_blue">#39A2DB</color>

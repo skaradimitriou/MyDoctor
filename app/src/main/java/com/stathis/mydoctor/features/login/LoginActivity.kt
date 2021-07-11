@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.stathis.mydoctor.R
 import com.stathis.mydoctor.abstraction.AbstractActivity
 import com.stathis.mydoctor.features.main.MainActivity
+import com.stathis.mydoctor.features.register.RegisterActivity
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AbstractActivity(R.layout.activity_login) {
@@ -14,17 +15,6 @@ class LoginActivity : AbstractActivity(R.layout.activity_login) {
 
     override fun init() {
         viewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
-
-        /*
-        As a user, I want to have a clean screen with the following options:
-        - Enter my login data (email, password)
-        - Login Button
-
-        Also: The following functionalities need to be implemented:
-        - Validate user input
-        - Authenticate user to the app
-
-         */
     }
 
     override fun running() {
@@ -35,10 +25,28 @@ class LoginActivity : AbstractActivity(R.layout.activity_login) {
             viewModel.authenticateUser(email,pass)
         }
 
+        forgot_password.setOnClickListener{
+            //FIXME: To be implemented later on
+        }
+
+        register_btn.setOnClickListener{
+            startActivity(Intent(this, RegisterActivity::class.java))
+        }
+
         viewModel.userAuthenticated.observe(this, Observer {
             when(it){
                 true -> startActivity(Intent(this, MainActivity::class.java))
                 false -> {} // throw some kind of error to the user
+            }
+        })
+
+        viewModel.userIsLoggedIn.observe(this, Observer{
+            when(it){
+                true -> {
+                    startActivity(Intent(this, MainActivity::class.java))
+                    finish()
+                }
+                false -> Unit
             }
         })
     }
