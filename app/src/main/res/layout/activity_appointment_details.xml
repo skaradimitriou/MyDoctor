@@ -4,6 +4,97 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="@dimen/dimen_16"
     tools:context=".features.appointment_details.AppointmentDetailsActivity">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/appointment_img"
+        android:layout_width="@dimen/dimen_80"
+        android:layout_height="@dimen/dimen_80"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@mipmap/ic_launcher" />
+
+    <TextView
+        android:id="@+id/doctor_name"
+        style="@style/text_h2_dark"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimen_10"
+        app:layout_constraintStart_toEndOf="@id/appointment_img"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Dr. Giannis Markopoulos" />
+
+    <TextView
+        android:id="@+id/doctor_category"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/dimen_5"
+        app:layout_constraintStart_toStartOf="@id/doctor_name"
+        app:layout_constraintTop_toBottomOf="@id/doctor_name"
+        tools:text="Dr. Giannis Markopoulos" />
+
+    <ImageButton
+        android:id="@+id/doctor_msg_btn"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="@dimen/dimen_5"
+        app:layout_constraintStart_toStartOf="@id/doctor_category"
+        app:layout_constraintTop_toBottomOf="@id/doctor_category" />
+
+    <ImageButton
+        android:id="@+id/doctor_call_btn"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="@dimen/dimen_10"
+        app:layout_constraintStart_toEndOf="@id/doctor_msg_btn"
+        app:layout_constraintTop_toTopOf="@id/doctor_msg_btn"/>
+
+    <Button
+        android:id="@+id/video_call"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/default_btn_height"
+        android:layout_marginTop="@dimen/dimen_30"
+        android:textColor="@color/black"
+        android:backgroundTint="@color/light_grey"
+        android:text="Start a video call"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/appointment_img" />
+
+    <Button
+        android:id="@+id/reschedule_btn"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/default_btn_height"
+        android:layout_marginEnd="@dimen/dimen_5"
+        android:backgroundTint="@color/ocean_blue"
+        android:text="Reschedule"
+        app:layout_constraintEnd_toStartOf="@id/cancel_btn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/video_call" />
+
+    <Button
+        android:id="@+id/cancel_btn"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/default_btn_height"
+        android:layout_marginStart="@dimen/dimen_5"
+        android:backgroundTint="#70ff0000"
+        android:text="Cancel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/reschedule_btn"
+        app:layout_constraintTop_toBottomOf="@id/video_call" />
+
+    <TextView
+        android:id="@+id/details"
+        style="@style/text_h4_dark"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/dimen_10"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/reschedule_btn"
+        tools:text="Dr. Giannis Markopoulos" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

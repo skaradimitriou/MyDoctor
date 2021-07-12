@@ -21,6 +21,15 @@ class AppointmentDetailsActivity : AbstractActivity(R.layout.activity_appointmen
         - Be able to cancel my appointment or call my doctor
 
          */
+
+        /*
+        FIXME:
+        - Type -> Video Consultation (with img vector at end)
+        - Date & Time -> XX/XX/XXXX, XX:XX (calendar img vector)
+        - Duration -> 1h (clock svg vector)
+        - Estimated cost -> 25$ (card img)
+        - Location (?) -> Athens (location icon)
+         */
     }
 
     override fun stopped() = viewModel.release(this)
