@@ -4,6 +4,7 @@ import android.content.Intent
 import android.util.Log
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.datepicker.MaterialDatePicker
+import com.google.gson.Gson
 import com.stathis.mydoctor.R
 import com.stathis.mydoctor.abstraction.AbstractFragment
 import com.stathis.mydoctor.callbacks.AppointmentClickListener
@@ -26,8 +27,9 @@ class AppointmentsFragment : AbstractFragment(R.layout.fragment_appointments) {
 
         viewModel.bindCallbacks(object : AppointmentClickListener {
             override fun onAppointmentTap(event: Appointment) {
+                val model = Gson().toJson(event)
                 startActivity(Intent(requireContext(), AppointmentDetailsActivity::class.java).also{
-                    it.putExtra("TEST",event.description)
+                    it.putExtra("APPOINTMENT",model)
                 })
             }
         })
