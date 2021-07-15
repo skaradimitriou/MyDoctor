@@ -12,6 +12,7 @@ import com.stathis.mydoctor.features.caterories.CategoriesActivity
 import com.stathis.mydoctor.features.caterories.adapter.CategoriesAdapter
 import com.stathis.mydoctor.features.doctor.DoctorActivity
 import com.stathis.mydoctor.features.main.overview.model.AllCategoriesModel
+import com.stathis.mydoctor.features.profile.ProfileActivity
 import com.stathis.mydoctor.features.results.DoctorResultsActivity
 import com.stathis.mydoctor.models.Category
 import com.stathis.mydoctor.models.Doctor
@@ -32,13 +33,13 @@ class OverviewFragment : AbstractFragment(R.layout.fragment_overview) {
         FIXME
             - fix the UI for doctors to be more good-looking
             - Add a lazy loading effect
-            - Add all categories so I can click on it and open categories screen
             - Add all doctors so I can click and get all doctors (?)
          */
 
         home_nested_recycler.adapter = viewModel.adapter
 
         viewModel.bindCallbacks(object : HomeClickListener{
+            override fun onProfileTap() = openProfile()
             override fun onCategoryTap(category: Category) = getDoctors(category)
             override fun onDoctorTap(doctor: Doctor) = openDoctorScreen(doctor)
             override fun openAllCategories(data: AllCategoriesModel) = goToCategoryScreen(data)
@@ -64,5 +65,9 @@ class OverviewFragment : AbstractFragment(R.layout.fragment_overview) {
 
     private fun goToCategoryScreen(data: AllCategoriesModel) {
         startActivity(Intent(requireContext(), CategoriesActivity::class.java))
+    }
+
+    private fun openProfile() {
+        startActivity(Intent(requireContext(), ProfileActivity::class.java))
     }
 }

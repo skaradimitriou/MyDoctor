@@ -103,6 +103,7 @@ class OverviewViewModel(app : Application) : AndroidViewModel(app), ItemClickLis
 
     override fun onItemTap(view: View) {
         when(view.tag){
+            is HeaderModel -> callback.onProfileTap()
             is Doctor -> callback.onDoctorTap(view.tag as Doctor)
             is Category -> callback.onCategoryTap(view.tag as Category)
             is AllCategoriesModel -> callback.openAllCategories(view.tag as AllCategoriesModel)
