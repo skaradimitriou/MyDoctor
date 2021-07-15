@@ -11,6 +11,7 @@ import com.stathis.mydoctor.callbacks.HomeClickListener
 import com.stathis.mydoctor.features.caterories.CategoriesActivity
 import com.stathis.mydoctor.features.caterories.adapter.CategoriesAdapter
 import com.stathis.mydoctor.features.doctor.DoctorActivity
+import com.stathis.mydoctor.features.main.overview.model.AllCategoriesModel
 import com.stathis.mydoctor.features.results.DoctorResultsActivity
 import com.stathis.mydoctor.models.Category
 import com.stathis.mydoctor.models.Doctor
@@ -40,6 +41,7 @@ class OverviewFragment : AbstractFragment(R.layout.fragment_overview) {
         viewModel.bindCallbacks(object : HomeClickListener{
             override fun onCategoryTap(category: Category) = getDoctors(category)
             override fun onDoctorTap(doctor: Doctor) = openDoctorScreen(doctor)
+            override fun openAllCategories(data: AllCategoriesModel) = goToCategoryScreen(data)
         })
 
         viewModel.observe(viewLifecycleOwner)
@@ -58,5 +60,9 @@ class OverviewFragment : AbstractFragment(R.layout.fragment_overview) {
         startActivity(Intent(requireContext(), DoctorResultsActivity::class.java).also{
             it.putExtra("CATEGORY",category.description)
         })
+    }
+
+    private fun goToCategoryScreen(data: AllCategoriesModel) {
+        startActivity(Intent(requireContext(), CategoriesActivity::class.java))
     }
 }

@@ -1,13 +1,7 @@
 package com.stathis.mydoctor.features.main.overview.model
 
 import com.stathis.mydoctor.abstraction.LocalModel
-import com.stathis.mydoctor.models.Category
 
-data class CategoryParent(
-
-    val header : String,
-    val list : List<LocalModel>
-
-) : LocalModel {
+class AllCategoriesModel() : LocalModel {
     override fun equals(data: LocalModel): Boolean = false
 }

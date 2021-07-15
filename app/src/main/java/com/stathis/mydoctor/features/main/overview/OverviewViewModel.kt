@@ -11,6 +11,7 @@ import com.stathis.mydoctor.abstraction.ItemClickListener
 import com.stathis.mydoctor.abstraction.LocalModel
 import com.stathis.mydoctor.callbacks.HomeClickListener
 import com.stathis.mydoctor.features.main.overview.adapters.OverviewScreenAdapter
+import com.stathis.mydoctor.features.main.overview.model.AllCategoriesModel
 import com.stathis.mydoctor.features.main.overview.model.CategoryParent
 import com.stathis.mydoctor.features.main.overview.model.DoctorParent
 import com.stathis.mydoctor.features.main.overview.model.PromoParent
@@ -59,7 +60,8 @@ class OverviewViewModel(app : Application) : AndroidViewModel(app), ItemClickLis
             Category(resources.getString(R.string.kardiologos), R.drawable.ic_cardiologist),
             Category(resources.getString(R.string.wrl), R.drawable.ic_wrl),
             Category(resources.getString(R.string.xeirourgos), R.drawable.ic_surgery),
-            Category(resources.getString(R.string.neurologos), R.drawable.ic_neurology)
+            Category(resources.getString(R.string.neurologos), R.drawable.ic_neurology),
+            AllCategoriesModel()
         )
 
         val list = listOf(
@@ -103,6 +105,7 @@ class OverviewViewModel(app : Application) : AndroidViewModel(app), ItemClickLis
         when(view.tag){
             is Doctor -> callback.onDoctorTap(view.tag as Doctor)
             is Category -> callback.onCategoryTap(view.tag as Category)
+            is AllCategoriesModel -> callback.openAllCategories(view.tag as AllCategoriesModel)
         }
     }
 }
