@@ -91,44 +91,18 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/dimen_10"
-        android:paddingBottom="@dimen/dimen_10"
         android:text="Details"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/reschedule_btn" />
 
-    <include
-        android:id="@+id/appointment_date"
-        layout="@layout/appointment_card_item"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/appointment_details"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/details" />
-
-    <include
-        android:id="@+id/appointment_location"
-        layout="@layout/appointment_card_item"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dimen_10"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/appointment_date" />
-
-    <include
-        android:id="@+id/appointment_reason"
-        layout="@layout/appointment_card_item"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dimen_10"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/appointment_location" />
-
-    <include
-        android:id="@+id/appointment_price"
-        layout="@layout/appointment_card_item"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dimen_10"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/appointment_reason" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
