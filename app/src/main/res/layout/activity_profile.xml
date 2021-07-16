@@ -5,67 +5,58 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/app_bg"
-    android:padding="@dimen/dimen_16"
     tools:context=".features.profile.ProfileActivity">
+
+    <View
+        android:id="@+id/profile_bg"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:background="@color/ocean_blue"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/profile_bg_center"
+        android:layout_width="1dp"
+        android:layout_height="1dp"
+        app:layout_constraintBottom_toBottomOf="@id/profile_bg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profile_user_img"
-        android:layout_width="@dimen/dimen_60"
-        android:layout_height="@dimen/dimen_60"
+        android:layout_width="@dimen/dimen_80"
+        android:layout_height="@dimen/dimen_80"
         android:contentDescription="@string/app_name"
         android:scaleType="centerCrop"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/profile_bg_center"
+        app:layout_constraintEnd_toEndOf="@id/profile_bg_center"
+        app:layout_constraintStart_toStartOf="@id/profile_bg_center"
+        app:layout_constraintTop_toTopOf="@id/profile_bg_center"
         tools:src="@mipmap/ic_launcher" />
 
     <TextView
         android:id="@+id/profile_user_name"
         style="@style/text_h3_dark"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
         android:padding="@dimen/dimen_10"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/profile_user_img"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/profile_user_img"
         tools:text="Stathis Karadimitriou" />
 
-    <ImageView
-        android:id="@+id/mail_icon"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_marginTop="@dimen/dimen_10"
-        android:src="@mipmap/ic_launcher"
-        app:layout_constraintStart_toStartOf="@id/profile_user_img"
-        app:layout_constraintTop_toBottomOf="@id/profile_user_img" />
-
-    <TextView
-        android:id="@+id/user_email"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:paddingStart="@dimen/dimen_10"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/mail_icon"
-        app:layout_constraintTop_toTopOf="@id/mail_icon"
-        tools:text="test.testopoulos@gmail.com" />
-
-    <ImageView
-        android:id="@+id/telephone_icon"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_marginTop="@dimen/dimen_10"
-        android:src="@mipmap/ic_launcher"
-        app:layout_constraintStart_toStartOf="@id/mail_icon"
-        app:layout_constraintTop_toBottomOf="@id/mail_icon" />
-
-    <TextView
-        android:id="@+id/user_telephone"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:paddingStart="@dimen/dimen_10"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/telephone_icon"
-        app:layout_constraintTop_toTopOf="@id/telephone_icon"
-        tools:text="test.testopoulos@gmail.com" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/profile_details_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        tools:itemCount="3"
+        tools:listitem="@layout/holder_profile_detail_item_row"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toTopOf="@id/profile_logout_btn"
+        app:layout_constraintTop_toBottomOf="@id/profile_user_name" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/profile_logout_btn"
@@ -73,6 +64,7 @@
         android:layout_height="56dp"
         android:backgroundTint="@color/white"
         android:text="Log out"
+        android:layout_margin="@dimen/dimen_16"
         android:textAllCaps="false"
         android:textColor="#ff0000"
         app:icon="@drawable/ic_power_button"

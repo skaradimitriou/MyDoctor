@@ -5,6 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.stathis.mydoctor.features.profile.adapter.ProfileAdapter
+import com.stathis.mydoctor.features.profile.model.ProfileItem
 import com.stathis.mydoctor.models.User
 import com.stathis.mydoctor.utils.TAG
 
@@ -14,6 +16,7 @@ class ProfileViewModel : ViewModel() {
     val firestore by lazy { FirebaseFirestore.getInstance() }
     val userLoggedOut = MutableLiveData<Boolean>()
     val userData = MutableLiveData<User>()
+    val adapter = ProfileAdapter()
 
     init {
         getUserData()
@@ -39,5 +42,14 @@ class ProfileViewModel : ViewModel() {
                     false -> userData.value = null
                 }
             }
+    }
+
+    fun bindProfileDetails(user: User) {
+        val list = listOf(
+            ProfileItem("Email", user.email),
+            ProfileItem("Telephone", user.telephone)
+        )
+
+        adapter.submitList(list)
     }
 }

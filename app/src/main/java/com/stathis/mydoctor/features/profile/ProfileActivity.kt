@@ -22,6 +22,8 @@ class ProfileActivity : AbstractActivity(R.layout.activity_profile) {
         }
 
         observe()
+
+        profile_details_recycler.adapter = viewModel.adapter
     }
 
     private fun observe() {
@@ -40,8 +42,7 @@ class ProfileActivity : AbstractActivity(R.layout.activity_profile) {
     private fun binduserData(user : User) {
         Glide.with(this).load(user.userPhoto).into(profile_user_img)
         profile_user_name.text = user.username
-        user_email.text = user.email
-        user_telephone.text = user.telephone
+        viewModel.bindProfileDetails(user)
     }
 
     override fun stopped() {}
