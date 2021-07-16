@@ -1,8 +1,12 @@
 package com.stathis.mydoctor.features.profile
 
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.bumptech.glide.Glide
 import com.stathis.mydoctor.R
 import com.stathis.mydoctor.abstraction.AbstractActivity
+import com.stathis.mydoctor.models.User
+import kotlinx.android.synthetic.main.activity_profile.*
 
 class ProfileActivity : AbstractActivity(R.layout.activity_profile) {
 
@@ -10,21 +14,35 @@ class ProfileActivity : AbstractActivity(R.layout.activity_profile) {
 
     override fun init() {
         viewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
-
-        /*
-        As a user, I want to:
-            - view my profile
-            - be able to upload a photo to my profile
-            - be able to view my personal data
-            - be able to change my personal data if I want to
-         */
     }
 
     override fun running() {
+        profile_logout_btn.setOnClickListener{
+            viewModel.logout()
+        }
 
+        observe()
     }
 
-    override fun stopped() {
+    private fun observe() {
+        viewModel.userLoggedOut.observe(this, Observer {
+            when(it){
+                true -> {}
+                false -> Unit
+            }
+        })
 
+        viewModel.userData.observe(this, Observer{
+            it?.let { binduserData(it) }
+        })
     }
+
+    private fun binduserData(user : User) {
+        Glide.with(this).load(user.userPhoto).into(profile_user_img)
+        profile_user_name.text = user.username
+        user_email.text = user.email
+        user_telephone.text = user.telephone
+    }
+
+    override fun stopped() {}
 }
