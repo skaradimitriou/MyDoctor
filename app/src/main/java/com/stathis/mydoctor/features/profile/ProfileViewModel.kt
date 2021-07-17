@@ -23,12 +23,12 @@ class ProfileViewModel : ViewModel() {
     }
 
     fun logout() {
-        //auth.signOut()
-        //userLoggedOut.value = true
+        auth.signOut()
+        userLoggedOut.value = true
     }
 
     fun getUserData() {
-        firestore.collection("users").document("uCAIilCFU0673H3S3Lyo").get()
+        firestore.collection("users").document(auth.currentUser!!.uid).get()
             .addOnCompleteListener { task ->
                 when (task.isSuccessful) {
                     true -> {

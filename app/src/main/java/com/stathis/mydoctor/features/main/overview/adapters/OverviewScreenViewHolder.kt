@@ -4,6 +4,7 @@ import android.view.View
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import com.bumptech.glide.Glide
+import com.stathis.mydoctor.R
 import com.stathis.mydoctor.abstraction.AbstractViewHolder
 import com.stathis.mydoctor.abstraction.ItemClickListener
 import com.stathis.mydoctor.abstraction.LocalModel
@@ -23,7 +24,11 @@ class OverviewScreenViewHolder(itemView : View,callback : ItemClickListener) : A
         when(data){
             is HeaderModel -> {
                 itemView.home_header.text = "Hello ${data.user.username}"
-                Glide.with(itemView).load(data.user.userPhoto).into(itemView.home_user_img)
+
+                when(data.user.userPhoto.isNullOrEmpty()){
+                    true -> itemView.home_user_img.setImageResource(R.drawable.empty_profile_photo)
+                    false -> Glide.with(itemView).load(data.user.userPhoto).into(itemView.home_user_img)
+                }
             }
 
             is CategoryParent -> {

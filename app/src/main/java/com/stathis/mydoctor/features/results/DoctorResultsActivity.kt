@@ -20,7 +20,14 @@ class DoctorResultsActivity : AbstractActivity(R.layout.activity_doctor_results)
 
     override fun running() {
         val category = intent.getStringExtra("CATEGORY")
-        doctor_results_txt.text = category
+
+        when(category.isNullOrEmpty()){
+            true -> {}
+            false -> {
+                doctor_results_txt.text = category
+                viewModel.getDoctorsForCategory(category)
+            }
+        }
 
         doctor_results_recycler.adapter = viewModel.adapter
 

@@ -20,12 +20,8 @@ class DoctorResultsViewModel : ViewModel(), ItemClickListener {
     val adapter = DoctorResultsAdapter(this)
     val doctors = MutableLiveData<List<Doctor>>()
 
-    init {
-        getDummyDoctors()
-    }
-
-    private fun getDummyDoctors() {
-        firestore.collection("doctors").get().addOnSuccessListener { docs ->
+    fun getDoctorsForCategory(category : String) {
+        firestore.collection("doctors").whereEqualTo("category",category).get().addOnSuccessListener { docs ->
             val doctorList = arrayListOf<Doctor>()
             for (document in docs) {
                 Log.d("TAG", "${document.id} => ${document.data}")

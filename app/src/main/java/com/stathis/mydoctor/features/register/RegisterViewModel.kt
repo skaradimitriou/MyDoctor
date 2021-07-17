@@ -36,10 +36,10 @@ class RegisterViewModel : ViewModel() {
 
         val data: HashMap<String, Any> = hashMapOf(
             "username" to email.takeWhile { it != '@' },
-            "location" to "",
-            "userImg" to "",
+            "location" to "Not available yet",
+            "userImg" to "https://nd.net/wp-content/uploads/2016/04/profile-dummy.png",
             "email" to email,
-            "phoneNo" to ""
+            "telephone" to "Not available yet"
         )
 
         documentReference.set(data).addOnSuccessListener {

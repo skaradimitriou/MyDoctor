@@ -4,6 +4,7 @@ import android.app.Application
 import android.util.Log
 import android.view.View
 import androidx.lifecycle.*
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Source
 import com.stathis.mydoctor.R
@@ -24,6 +25,7 @@ class OverviewViewModel(app : Application) : AndroidViewModel(app), ItemClickLis
 
     val resources = app.resources
     private val firestore by lazy { FirebaseFirestore.getInstance() }
+    private val auth by lazy { FirebaseAuth.getInstance() }
     val adapter = OverviewScreenAdapter(this)
     val overviewList = MutableLiveData<List<LocalModel>>()
     private lateinit var callback : HomeClickListener
@@ -75,7 +77,7 @@ class OverviewViewModel(app : Application) : AndroidViewModel(app), ItemClickLis
     }
 
     private fun getUserData() {
-        firestore.collection("users").document("uCAIilCFU0673H3S3Lyo").get()
+        firestore.collection("users").document(auth.currentUser!!.uid).get()
             .addOnCompleteListener { task ->
                 when (task.isSuccessful) {
                     true -> {

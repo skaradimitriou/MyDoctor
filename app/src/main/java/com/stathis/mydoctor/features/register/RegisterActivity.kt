@@ -14,18 +14,6 @@ class RegisterActivity : AbstractActivity(R.layout.activity_register) {
 
     override fun init() {
         viewModel = ViewModelProvider(this).get(RegisterViewModel::class.java)
-
-        /*
-        As a user, I want to have a clean screen with the following options:
-        - Enter my Register data (email, password,pass confirm)
-        - Register Button
-
-        Also: The following functionalities need to be implemented:
-        - Validate user input
-        - Check if passwords match and if it is a strong password
-        - Authenticate user to the app
-
-         */
     }
 
     override fun running() {

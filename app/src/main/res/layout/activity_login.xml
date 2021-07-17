@@ -52,13 +52,14 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dimen_20"
         android:hint="@string/pass_hint"
+        android:inputType="textPassword"
         app:layout_constraintTop_toBottomOf="@id/emailField">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/pass_input_field"
             android:layout_width="match_parent"
+            android:maxLines="1"
             android:layout_height="wrap_content"
-            android:inputType="textPassword"
             android:background="@color/white" />
 
     </com.google.android.material.textfield.TextInputLayout>

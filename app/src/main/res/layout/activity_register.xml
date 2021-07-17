@@ -13,19 +13,19 @@
         android:layout_width="@dimen/image_85"
         android:layout_height="@dimen/image_85"
         android:layout_marginTop="@dimen/dimen_30"
-        android:contentDescription="@string/app_name"
         android:background="@drawable/ic_stethoscope"
+        android:contentDescription="@string/app_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/register_app_name"
+        style="@style/text_h2_dark"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/my_doctor"
-        style="@style/text_h2_dark"
         android:padding="@dimen/dimen_16"
+        android:text="@string/my_doctor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/register_img" />
@@ -52,13 +52,15 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dimen_16"
         android:hint="@string/pass_hint"
+        android:inputType="textPassword"
         app:layout_constraintTop_toBottomOf="@id/emailField">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/pass_input_field"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white" />
+            android:background="@color/white"
+            android:maxLines="1" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -68,13 +70,15 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dimen_16"
         android:hint="@string/confirm_password_hint"
+        android:inputType="textPassword"
         app:layout_constraintTop_toBottomOf="@id/passField">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/pass_conf_input_field"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white" />
+            android:background="@color/white"
+            android:maxLines="1" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -83,9 +87,9 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/default_btn_height"
         android:layout_marginBottom="@dimen/dimen_20"
+        android:backgroundTint="@color/ocean_blue"
         android:text="@string/create_account_btn"
         android:textAllCaps="false"
-        android:backgroundTint="@color/ocean_blue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
