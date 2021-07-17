@@ -47,7 +47,8 @@ class ProfileViewModel : ViewModel() {
     fun bindProfileDetails(user: User) {
         val list = listOf(
             ProfileItem("Email", user.email),
-            ProfileItem("Telephone", user.telephone)
+            ProfileItem("Telephone", user.telephone),
+            ProfileItem("Location", user.location)
         )
 
         adapter.submitList(list)
