@@ -10,37 +10,57 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Source
 import com.stathis.mydoctor.abstraction.ItemClickListener
 import com.stathis.mydoctor.callbacks.DoctorClickListener
+import com.stathis.mydoctor.features.main.search.models.EmptyQuery
+import com.stathis.mydoctor.features.main.search.models.EmptyResult
 import com.stathis.mydoctor.features.results.adapter.DoctorResultsAdapter
 import com.stathis.mydoctor.models.Doctor
 
 class DoctorResultsViewModel : ViewModel(), ItemClickListener {
 
-    private val firestore by lazy { FirebaseFirestore.getInstance() }
+    private val firestore =  FirebaseFirestore.getInstance()
     private lateinit var callback: DoctorClickListener
     val adapter = DoctorResultsAdapter(this)
     val doctors = MutableLiveData<List<Doctor>>()
 
-    fun getDoctorsForCategory(category : String) {
-        firestore.collection("doctors").whereEqualTo("category",category).get().addOnSuccessListener { docs ->
-            val doctorList = arrayListOf<Doctor>()
-            for (document in docs) {
-                Log.d("TAG", "${document.id} => ${document.data}")
-                val doctor = document.toObject(Doctor::class.java)
-                doctorList.add(doctor)
+    fun getDoctorsForCategory(category: String) {
+        firestore.collection("doctors")
+            .whereEqualTo("category", category)
+            .get(Source.SERVER)
+            .addOnSuccessListener { docs ->
+                val doctorList = arrayListOf<Doctor>()
+                for (document in docs) {
+                    Log.d("TAG", "${document.id} => ${document.data}")
+                    val doctor = document.toObject(Doctor::class.java)
+                    doctorList.add(doctor)
+                }
+                doctors.value = doctorList
+            }.addOnFailureListener {
+                Log.d("TAG", "Error getting documents: ", it)
+                doctors.value = null
             }
-
-            doctors.value = doctorList
-        }.addOnFailureListener {
-            Log.d("TAG", "Error getting documents: ", it)
-        }
     }
 
     fun observe(owner: LifecycleOwner, callback: DoctorClickListener) {
         this.callback = callback
 
         doctors.observe(owner, Observer {
-            adapter.submitList(it)
+            bindResults(it)
         })
+    }
+
+    private fun bindResults(list : List<Doctor>) {
+        when(list.isNullOrEmpty()){
+            true -> {
+                adapter.submitList(
+                    listOf(EmptyResult(
+                            "No Doctors Available",
+                            "We couldn't find doctor results for this category. Once we got results, they will appear here.")))
+            }
+
+            false -> adapter.submitList(list)
+        }
+
+        adapter.notifyDataSetChanged()
     }
 
     fun release(owner: LifecycleOwner) {
