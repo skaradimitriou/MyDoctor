@@ -35,7 +35,7 @@ class AppointmentsFragment : AbstractFragment(R.layout.fragment_appointments) {
         })
 
         new_appointment.setOnClickListener{
-           startActivity(Intent(requireContext(),AppointmentsActivity::class.java))
+           //startActivity(Intent(requireContext(),AppointmentsActivity::class.java))
         }
 
         viewModel.observe(this)
