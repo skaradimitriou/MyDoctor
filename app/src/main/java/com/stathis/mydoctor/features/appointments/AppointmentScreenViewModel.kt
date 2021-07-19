@@ -12,4 +12,6 @@ class AppointmentScreenViewModel : ViewModel() {
     fun saveAppointment(){
         appointmentSaved.value = true
     }
+
+
 }

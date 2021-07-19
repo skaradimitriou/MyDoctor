@@ -6,4 +6,26 @@
     android:layout_height="match_parent"
     tools:context=".features.appointments.AppointmentsActivity">
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/appointment_save_btn"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:text="Save my Appointment"
+        android:layout_margin="@dimen/dimen_16"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/new_appointment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="16dp"
+        app:tint="@null"
+        android:src="@drawable/ic_plus_icon"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:backgroundTint="@color/navy_blue" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
