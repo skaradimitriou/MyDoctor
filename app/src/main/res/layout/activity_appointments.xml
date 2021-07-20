@@ -4,28 +4,113 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/app_bg"
+    android:padding="@dimen/dimen_16"
     tools:context=".features.appointments.AppointmentsActivity">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/doctor_img"
+        android:layout_width="@dimen/dimen_60"
+        android:layout_height="@dimen/dimen_60"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/doctor_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/doctor_img"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@string/dummy_doc_name" />
+
+    <TextView
+        android:id="@+id/doctor_category"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/doctor_img"
+        app:layout_constraintTop_toBottomOf="@id/doctor_name"
+        tools:text="@string/dummy_doc_name" />
+
+    <TextView
+        android:id="@+id/appointment_location_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_20"
+        android:paddingBottom="@dimen/dimen_10"
+        android:text="Appointment Location"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/doctor_img" />
+
+    <TextView
+        android:id="@+id/appointment_location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/round_corners"
+        android:backgroundTint="@color/white"
+        android:padding="@dimen/dimen_16"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/appointment_location_header"
+        tools:text="Hello" />
+
+    <TextView
+        android:id="@+id/appointment_date_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_20"
+        android:paddingBottom="@dimen/dimen_10"
+        android:text="Date"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/appointment_location" />
+
+    <TextView
+        android:id="@+id/appointment_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/round_corners"
+        android:backgroundTint="@color/white"
+        android:padding="@dimen/dimen_16"
+        android:text="Select your appointment's date"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/appointment_date_header" />
+
+    <TextView
+        android:id="@+id/appointment_reason_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_20"
+        android:paddingBottom="@dimen/dimen_10"
+        android:text="Describe your visit's reason"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/appointment_date" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/visit_reason_parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/appointment_reason_header">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/visit_reason"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/appointment_save_btn"
         android:layout_width="match_parent"
         android:layout_height="56dp"
+        android:backgroundTint="@color/ocean_blue"
         android:text="Save my Appointment"
-        android:layout_margin="@dimen/dimen_16"
         android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent" />
-
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/new_appointment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|right"
-        android:layout_margin="16dp"
-        app:tint="@null"
-        android:src="@drawable/ic_plus_icon"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:backgroundTint="@color/navy_blue" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

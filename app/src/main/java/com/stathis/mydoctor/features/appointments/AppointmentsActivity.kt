@@ -3,6 +3,7 @@ package com.stathis.mydoctor.features.appointments
 import android.util.Log
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.bumptech.glide.Glide
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.gson.Gson
 import com.stathis.mydoctor.R
@@ -26,27 +27,28 @@ class AppointmentsActivity : AbstractActivity(R.layout.activity_appointments) {
             bindDoctorInfo(doctor)
         }
 
-        appointment_save_btn.setOnClickListener {
+        appointment_save_btn.setOnClickListener{
+            val appointmentReason = visit_reason.text.toString()
+            val appointmentDate = appointment_date.text.toString()
 
+            viewModel.validateUserInput()
         }
 
         viewModel.appointmentSaved.observe(this, Observer {
             when (it) {
-                true -> {
-                } // Show snackbar
+                true -> {} // Show snackbar
                 false -> Unit
             }
         })
     }
 
     private fun bindDoctorInfo(model: Doctor) {
-        /*
-        FIXME:
+        Glide.with(this).load(model.image).into(doctor_img)
+        doctor_name.text = model.fullname
+        doctor_category.text = model.category
+        appointment_location.text = resources.getString(R.string.dummy_doc_hospital)
 
-        UI screen that contains: info about the doctor at the top,
-        and edit texts in the middle screen so the user can fill
-        the reason of his appointment and the date
-         */
+        selectDates()
     }
 
     private fun selectDates() {
@@ -59,10 +61,11 @@ class AppointmentsActivity : AbstractActivity(R.layout.activity_appointments) {
             .setTitleText("Ημερομηνία Ραντεβού")
             .build()
 
-        new_appointment.setOnClickListener {
+        appointment_date.setOnClickListener {
             dateRangePicker.show(this.supportFragmentManager, "SELECT DATES")
             dateRangePicker.addOnPositiveButtonClickListener {
-                Log.d("", it.toString())
+                val date = dateRangePicker.headerText
+                appointment_date.text = date
             }
 
             Log.d("", dateRangePicker.toString())

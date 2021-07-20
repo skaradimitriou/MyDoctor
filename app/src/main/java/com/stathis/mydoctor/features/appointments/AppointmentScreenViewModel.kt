@@ -13,5 +13,11 @@ class AppointmentScreenViewModel : ViewModel() {
         appointmentSaved.value = true
     }
 
+    fun validateUserInput() {
+        /*
+        FIXME: Add Logic to save the appointment
+         */
+    }
+
 
 }
