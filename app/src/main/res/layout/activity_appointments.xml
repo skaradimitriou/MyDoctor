@@ -80,6 +80,28 @@
         app:layout_constraintTop_toBottomOf="@id/appointment_date_header" />
 
     <TextView
+        android:id="@+id/appointment_time_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_20"
+        android:paddingBottom="@dimen/dimen_10"
+        android:text="Time"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/appointment_date" />
+
+    <TextView
+        android:id="@+id/appointment_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/round_corners"
+        android:backgroundTint="@color/white"
+        android:padding="@dimen/dimen_16"
+        android:text="Select your appointment's time"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/appointment_time_header" />
+
+    <TextView
         android:id="@+id/appointment_reason_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -88,7 +110,7 @@
         android:text="Describe your visit's reason"
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/appointment_date" />
+        app:layout_constraintTop_toBottomOf="@id/appointment_time" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/visit_reason_parent"

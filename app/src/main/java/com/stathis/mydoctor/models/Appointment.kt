@@ -4,17 +4,16 @@ import com.stathis.mydoctor.abstraction.LocalModel
 
 data class Appointment(
 
-    val doctorName : String,
-    val doctorImg : String,
-    val description : String,
-    val location : String,
-    val patientName : String,
-    val date : String,
-    val startHour : String,
-    val endHour : String
+    val doctor: Doctor,
+    val date: String,
+    val hour: String,
+    val reason : String
 
 
 ) : LocalModel {
-    constructor() : this("","", "", "Athens","","", "","")
+    constructor() : this(
+        Doctor("", "", 0.0, "", "", 0),
+        "", "","")
+
     override fun equals(data: LocalModel): Boolean = false
 }

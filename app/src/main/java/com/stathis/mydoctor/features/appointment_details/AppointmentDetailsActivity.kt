@@ -43,8 +43,8 @@ class AppointmentDetailsActivity : AbstractActivity(R.layout.activity_appointmen
     }
 
     private fun bindAppointmentData(data : Appointment) {
-        Glide.with(this).load(data.doctorImg).into(appointment_img)
-        doctor_name.text = data.doctorName
+        Glide.with(this).load(data.doctor.image).into(appointment_img)
+        doctor_name.text = data.doctor.fullname
 
         viewModel.bindAppointmentDetails(data)
     }
