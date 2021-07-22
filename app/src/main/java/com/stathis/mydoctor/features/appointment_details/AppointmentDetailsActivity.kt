@@ -12,6 +12,7 @@ import kotlinx.android.synthetic.main.activity_appointment_details.*
 class AppointmentDetailsActivity : AbstractActivity(R.layout.activity_appointment_details) {
 
     private lateinit var viewModel : AppointmentDetailsViewModel
+    private lateinit var appointment : Appointment
 
     override fun init() {
         viewModel = ViewModelProvider(this).get(AppointmentDetailsViewModel::class.java)
@@ -20,11 +21,11 @@ class AppointmentDetailsActivity : AbstractActivity(R.layout.activity_appointmen
     override fun running() {
         appointment_details.adapter = viewModel.adapter
 
-        val appointment = intent.getStringExtra("APPOINTMENT")
+        val model = intent.getStringExtra("APPOINTMENT")
 
-        appointment?.let{
-            val model = Gson().fromJson(appointment, Appointment::class.java)
-            bindAppointmentData(model)
+        model?.let{
+            appointment = Gson().fromJson(model, Appointment::class.java)
+            bindAppointmentData(appointment)
         }
 
         viewModel.observe(this)
@@ -34,7 +35,7 @@ class AppointmentDetailsActivity : AbstractActivity(R.layout.activity_appointmen
         }
 
         cancel_btn.setOnClickListener {
-            //FIXME: Add logic
+            viewModel.cancelAppointment(appointment)
         }
 
         video_call.setOnClickListener {

@@ -16,13 +16,13 @@ class AppointmentDetailsViewModel : ViewModel() {
     val details = MutableLiveData<List<LocalModel>>()
 
     fun bindAppointmentDetails(data: Appointment) {
-//        val list = listOf(
-//            AppointmentDetail("Date & Time","${data.date} | ${data.startHour} - ${data.endHour}", R.drawable.ic_monthly_calendar),
-//            AppointmentDetail("Location",data.location,R.drawable.ic_location),
-//            AppointmentDetail("Type of visit",data.description,R.drawable.ic_visit_reason),
-//            AppointmentDetail("Estimated Cost","25$",R.drawable.ic_euro))
-//
-//        details.value = list
+        val list = listOf(
+            AppointmentDetail("Date & Time","${data.date} | ${data.hour}", R.drawable.ic_monthly_calendar),
+            AppointmentDetail("Location","Athens",R.drawable.ic_location),
+            AppointmentDetail("Type of visit",data.reason,R.drawable.ic_visit_reason),
+            AppointmentDetail("Estimated Cost","25$",R.drawable.ic_euro))
+
+        details.value = list
     }
 
     fun observe(owner: LifecycleOwner) {
@@ -32,4 +32,8 @@ class AppointmentDetailsViewModel : ViewModel() {
     }
 
     fun release(owner: LifecycleOwner) = details.removeObservers(owner)
+
+    fun cancelAppointment(appointment: Appointment) {
+
+    }
 }
