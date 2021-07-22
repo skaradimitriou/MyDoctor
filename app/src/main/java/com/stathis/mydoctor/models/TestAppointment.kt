@@ -2,14 +2,11 @@ package com.stathis.mydoctor.models
 
 import com.stathis.mydoctor.abstraction.LocalModel
 
-data class Appointment(
+data class TestAppointment(
 
-    val doctor: Doctor = Doctor("", "", 0.0, "", "", 0),
-    val date: String = "",
-    val hour: String = "",
-    val reason : String = ""
-
+    val appointment : Appointment
 
 ) : LocalModel {
+    constructor() : this(Appointment(Doctor("", "", 0.0, "", "", 0),"","",""))
     override fun equals(data: LocalModel): Boolean = false
 }

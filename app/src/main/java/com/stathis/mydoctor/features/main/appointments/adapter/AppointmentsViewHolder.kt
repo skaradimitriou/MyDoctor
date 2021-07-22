@@ -18,13 +18,14 @@ class AppointmentsViewHolder(itemView : View,callback : ItemClickListener) : Abs
     override fun present(data: LocalModel) {
         when(data){
             is Appointment -> {
-//                itemView.appointment_name.text = data.doctorName
-//                itemView.appointment_desc.text = data.description
-//                itemView.appointment_location.text = data.location
-//
-//                itemView.appointment_time.text = "${data.date} | ${data.startHour} - ${data.endHour} (1h)"
-//
-//                Glide.with(itemView).load(data.doctorImg).into(itemView.appointment_doctor_img)
+                itemView.appointment_name.text = data.doctor.fullname
+                itemView.appointment_desc.text = data.reason
+                itemView.appointment_location.text = "Test location"
+
+
+                itemView.appointment_time.text = "${data.date} | ${data.hour}"
+
+                Glide.with(itemView).load(data.doctor.image).into(itemView.appointment_doctor_img)
             }
 
             is EmptyModel -> itemView.holder_empty_appointments.text = data.message

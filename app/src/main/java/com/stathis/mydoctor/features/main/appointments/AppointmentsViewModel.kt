@@ -6,19 +6,22 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Source
 import com.stathis.mydoctor.abstraction.ItemClickListener
 import com.stathis.mydoctor.abstraction.LocalModel
 import com.stathis.mydoctor.callbacks.AppointmentClickListener
 import com.stathis.mydoctor.features.main.appointments.adapter.AppointmentsAdapter
-import com.stathis.mydoctor.models.Appointment
-import com.stathis.mydoctor.models.EmptyModel
+import com.stathis.mydoctor.models.*
+import com.stathis.mydoctor.utils.TAG
 
 class AppointmentsViewModel : ViewModel(), ItemClickListener {
 
     private val firestore by lazy { FirebaseFirestore.getInstance() }
-    private val list = MutableLiveData<List<LocalModel>>()
+    private val auth by lazy { FirebaseAuth.getInstance() }
+    private val list = MutableLiveData<List<Appointment>>()
     val adapter = AppointmentsAdapter(this)
     private lateinit var callback : AppointmentClickListener
 
@@ -27,15 +30,19 @@ class AppointmentsViewModel : ViewModel(), ItemClickListener {
     }
 
     private fun getAppointments(){
-        firestore.collection("appointments").get().addOnSuccessListener { docs ->
-            val appointments = arrayListOf<Appointment>()
-            for (document in docs) {
-                Log.d("TAG", "${document.id} => ${document.data}")
-                val appointment = document.toObject(Appointment::class.java)
-                appointments.add(appointment)
-            }
+        firestore.collection("appointments").document(auth.currentUser!!.uid).get()
+            .addOnCompleteListener { task ->
+                when (task.isSuccessful) {
+                    true -> {
+                        val result = task.result
+                        val appointment = result?.toObject(TestAppointment::class.java)
 
-            list.value = appointments
+                        val test = result?.get("appointment") as HashMap<String,Doctor>
+
+                        Log.d("","")
+                    }
+                    false -> Unit
+                }
         }
     }
 
