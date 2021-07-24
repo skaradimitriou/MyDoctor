@@ -1,6 +1,7 @@
 package com.stathis.mydoctor.features.appointment_details
 
 
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.google.gson.Gson
@@ -11,8 +12,8 @@ import kotlinx.android.synthetic.main.activity_appointment_details.*
 
 class AppointmentDetailsActivity : AbstractActivity(R.layout.activity_appointment_details) {
 
-    private lateinit var viewModel : AppointmentDetailsViewModel
-    private lateinit var appointment : Appointment
+    private lateinit var viewModel: AppointmentDetailsViewModel
+    private lateinit var appointment: Appointment
 
     override fun init() {
         viewModel = ViewModelProvider(this).get(AppointmentDetailsViewModel::class.java)
@@ -23,7 +24,7 @@ class AppointmentDetailsActivity : AbstractActivity(R.layout.activity_appointmen
 
         val model = intent.getStringExtra("APPOINTMENT")
 
-        model?.let{
+        model?.let {
             appointment = Gson().fromJson(model, Appointment::class.java)
             bindAppointmentData(appointment)
         }
@@ -41,9 +42,19 @@ class AppointmentDetailsActivity : AbstractActivity(R.layout.activity_appointmen
         video_call.setOnClickListener {
             //FIXME: Add logic
         }
+
+        viewModel.appointmentCancelled.observe(this, Observer {
+            when (it) {
+                true -> {
+                    onBackPressed()
+                    finish()
+                }
+                else -> Unit
+            }
+        })
     }
 
-    private fun bindAppointmentData(data : Appointment) {
+    private fun bindAppointmentData(data: Appointment) {
         Glide.with(this).load(data.doctor.image).into(appointment_img)
         doctor_name.text = data.doctor.fullname
 
