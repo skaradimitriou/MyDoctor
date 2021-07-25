@@ -40,5 +40,11 @@
     <string name="login_btn">Login</string>
     <string name="forgot_your_password">Forgot your password?</string>
 
+    <!-- Appointment Details Screen -->
+    <string name="popup_title">Appointment Cancellation</string>
+    <string name="popup_desc">Are you sure that you want to cancel your appointment?</string>
+    <string name="popup_positive_btn">Yes</string>
+    <string name="popup_negative_btn">No</string>
+
 
 </resources>

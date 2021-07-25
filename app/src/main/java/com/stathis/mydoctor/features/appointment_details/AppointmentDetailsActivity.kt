@@ -1,6 +1,7 @@
 package com.stathis.mydoctor.features.appointment_details
 
 
+import android.app.AlertDialog
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
@@ -20,6 +21,13 @@ class AppointmentDetailsActivity : AbstractActivity(R.layout.activity_appointmen
     }
 
     override fun running() {
+        /*
+        FIXME: 1. Add an "are you sure" dialog when I tap on cancel button
+               2. Create reschedule activity in order to change the time of the appointment
+               3. Add chat button at the top
+               4. Add call button at the top
+         */
+
         appointment_details.adapter = viewModel.adapter
 
         val model = intent.getStringExtra("APPOINTMENT")
@@ -36,11 +44,11 @@ class AppointmentDetailsActivity : AbstractActivity(R.layout.activity_appointmen
         }
 
         cancel_btn.setOnClickListener {
-            viewModel.cancelAppointment(appointment)
+            showDialog()
         }
 
         video_call.setOnClickListener {
-            //FIXME: Add logic
+            //FIXME: Feature will be added in version 2
         }
 
         viewModel.appointmentCancelled.observe(this, Observer {
@@ -52,6 +60,17 @@ class AppointmentDetailsActivity : AbstractActivity(R.layout.activity_appointmen
                 else -> Unit
             }
         })
+    }
+
+    private fun showDialog() {
+        val builder = AlertDialog.Builder(this).also {
+            it.setTitle(resources.getString(R.string.popup_title))
+            it.setMessage(resources.getString(R.string.popup_desc))
+            it.setPositiveButton(resources.getString(R.string.popup_positive_btn)) { dialog, which -> viewModel.cancelAppointment(appointment) }
+            it.setNegativeButton(resources.getString(R.string.popup_negative_btn)) { dialog, which -> dialog.dismiss() }
+        }
+        val alert = builder.create()
+        alert.show()
     }
 
     private fun bindAppointmentData(data: Appointment) {

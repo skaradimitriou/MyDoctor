@@ -23,6 +23,10 @@ class AppointmentsFragment : AbstractFragment(R.layout.fragment_appointments) {
     }
 
     override fun running() {
+        /*
+        FIXME: 1. Change the UI of the empty appointment list
+         */
+
         appointments_recycler.adapter = viewModel.adapter
 
         viewModel.bindCallbacks(object : AppointmentClickListener {
@@ -33,10 +37,6 @@ class AppointmentsFragment : AbstractFragment(R.layout.fragment_appointments) {
                 })
             }
         })
-
-        new_appointment.setOnClickListener{
-           //startActivity(Intent(requireContext(),AppointmentsActivity::class.java))
-        }
 
         viewModel.observe(this)
     }
