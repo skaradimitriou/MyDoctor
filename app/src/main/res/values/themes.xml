@@ -38,6 +38,11 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="text_h3" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
     <style name="text_h3_dark" parent="Widget.AppCompat.TextView">
         <item name="android:textSize">16sp</item>
         <item name="android:textColor">@color/black</item>

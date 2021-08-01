@@ -46,5 +46,21 @@
     <string name="popup_positive_btn">Yes</string>
     <string name="popup_negative_btn">No</string>
 
+    <!-- Doctors Details -->
+    <string name="doc_name">Δρ. Γιάννης Πουλόπουλος</string>
+    <string name="doc_category">Δερματολόγος</string>
+
+    <!-- Appointment Details -->
+    <string name="reschedule">Αλλαγή Ραντεβού</string>
+    <string name="cancel">Ακύρωση</string>
+    <string name="details_header">Λεπτομέριες</string>
+    <string name="save_appointment">Αποθήκευση Ραντεβού</string>
+    <string name="appointment_location">Τοποθεσία Ραντεβού</string>
+    <string name="appointment_date">Ημερομηνία Ραντεβού</string>
+    <string name="appointment_date_value">27/07/2021</string>
+    <string name="appointment_location_value">Αθήνα, Ελλάδα</string>
+    <string name="appointment_time">Ώρα Ραντεβού</string>
+    <string name="appointment_time_value">20:00</string>
+    <string name="appointment_reason">Λόγος Επίσκεψης</string>
 
 </resources>

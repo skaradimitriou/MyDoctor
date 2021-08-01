@@ -8,8 +8,12 @@
 
     <TextView
         android:id="@+id/doctor_results_txt"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="@dimen/dimen_10"
+        android:background="@color/ocean_blue"
+        android:gravity="center_vertical|center_horizontal"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -18,13 +22,15 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/doctor_results_recycler"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:orientation="vertical"
-        android:paddingTop="@dimen/dimen_20"
         android:paddingStart="@dimen/dimen_10"
+        android:paddingTop="@dimen/dimen_20"
         android:paddingEnd="@dimen/dimen_10"
-        tools:listitem="@layout/holder_doctor_results_item"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/doctor_results_txt"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:spanCount="2" />
+        app:spanCount="2"
+        tools:listitem="@layout/holder_doctor_results_item" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

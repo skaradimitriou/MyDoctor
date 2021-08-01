@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="280dp"
+    android:layout_width="@dimen/dimen_280"
     android:layout_height="wrap_content"
     android:padding="@dimen/dimen_10">
 
@@ -19,8 +19,8 @@
 
     <ImageView
         android:id="@+id/home_doc_img"
-        android:layout_width="100dp"
-        android:layout_height="140dp"
+        android:layout_width="@dimen/image_100"
+        android:layout_height="@dimen/dimen_140"
         android:scaleType="centerCrop"
         android:layout_marginTop="@dimen/dimen_5"
         android:layout_marginBottom="@dimen/dimen_5"
@@ -37,8 +37,7 @@
         android:padding="@dimen/dimen_5"
         android:paddingStart="@dimen/dimen_10"
         android:text="@string/dummy_doc_name"
-        android:textSize="16sp"
-        android:textStyle="bold"
+        style="@style/text_h3_dark"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/home_doc_img"
         app:layout_constraintTop_toTopOf="parent" />
@@ -58,8 +57,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/dimen_10"
-        android:progressBackgroundTint="@color/black"
-        android:progressTint="#fdcc0d"
+        android:progressTint="@color/yellow_rating_star"
         android:rating="4"
         app:layout_constraintStart_toEndOf="@id/home_doc_img"
         app:layout_constraintTop_toBottomOf="@id/doctor_category" />
@@ -71,8 +69,7 @@
         android:paddingStart="@dimen/dimen_10"
         android:paddingTop="@dimen/dimen_10"
         android:text="@string/doc_experience"
-        android:textSize="16sp"
-        android:textStyle="bold"
+        style="@style/text_h3"
         app:layout_constraintStart_toEndOf="@id/home_doc_img"
         app:layout_constraintTop_toBottomOf="@id/doctor_rating" />
 

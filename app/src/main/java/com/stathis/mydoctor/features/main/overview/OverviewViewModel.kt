@@ -21,37 +21,80 @@ import com.stathis.mydoctor.utils.DEFAULT_IMG
 import com.stathis.mydoctor.utils.DEFAULT_USERNAME
 import com.stathis.mydoctor.utils.TAG
 
-class OverviewViewModel(app : Application) : AndroidViewModel(app), ItemClickListener {
+class OverviewViewModel(app: Application) : AndroidViewModel(app), ItemClickListener {
 
     val resources = app.resources
     private val firestore by lazy { FirebaseFirestore.getInstance() }
     private val auth by lazy { FirebaseAuth.getInstance() }
     val adapter = OverviewScreenAdapter(this)
     val overviewList = MutableLiveData<List<LocalModel>>()
-    private lateinit var callback : HomeClickListener
+    private lateinit var callback: HomeClickListener
 
     init {
         initDummyList(User(DEFAULT_USERNAME, DEFAULT_IMG))
         getUserData()
     }
 
-    fun bindCallbacks(callback : HomeClickListener){
+    fun bindCallbacks(callback: HomeClickListener) {
         this.callback = callback
     }
 
-    fun initDummyList(user : User) {
+    fun initDummyList(user: User) {
         val promoList = listOf(
-            PromoItem("This is a header","", R.drawable.ic_stethoscope),
-            PromoItem("This is a header","",R.drawable.ic_stethoscope),
-            PromoItem("This is a header","", R.drawable.ic_stethoscope))
+            PromoItem("This is a header", "", R.drawable.ic_stethoscope),
+            PromoItem("This is a header", "", R.drawable.ic_stethoscope),
+            PromoItem("This is a header", "", R.drawable.ic_stethoscope)
+        )
 
         val doctorList = listOf(
-            Doctor("Γιάννης Παπαδόπουλος", "https://post.medicalnewstoday.com/wp-content/uploads/2019/01/Male_Doctor_732x549-thumbnail.jpg", 4.6, "6934567143", "Ορθοπεδικός", 10),
-            Doctor("Γιάννης Παπαδόπουλος", "https://post.medicalnewstoday.com/wp-content/uploads/2019/01/Male_Doctor_732x549-thumbnail.jpg", 4.6, "6934567143", "Ορθοπεδικός", 10),
-            Doctor("Γιάννης Παπαδόπουλος", "https://post.medicalnewstoday.com/wp-content/uploads/2019/01/Male_Doctor_732x549-thumbnail.jpg", 4.6, "6934567143", "Ορθοπεδικός", 10),
-            Doctor("Γιάννης Παπαδόπουλος", "https://post.medicalnewstoday.com/wp-content/uploads/2019/01/Male_Doctor_732x549-thumbnail.jpg", 4.6, "6934567143", "Ορθοπεδικός", 10),
-            Doctor("Γιάννης Παπαδόπουλος", "https://post.medicalnewstoday.com/wp-content/uploads/2019/01/Male_Doctor_732x549-thumbnail.jpg", 4.6, "6934567143", "Ορθοπεδικός", 10),
-            Doctor("Γιάννης Παπαδόπουλος", "https://post.medicalnewstoday.com/wp-content/uploads/2019/01/Male_Doctor_732x549-thumbnail.jpg", 4.6, "6934567143", "Ορθοπεδικός", 10)
+            Doctor(
+                "Γιάννης Παπαδόπουλος",
+                "https://post.medicalnewstoday.com/wp-content/uploads/2019/01/Male_Doctor_732x549-thumbnail.jpg",
+                4.6,
+                "6934567143",
+                "Ορθοπεδικός",
+                10
+            ),
+            Doctor(
+                "Γιάννης Παπαδόπουλος",
+                "https://post.medicalnewstoday.com/wp-content/uploads/2019/01/Male_Doctor_732x549-thumbnail.jpg",
+                4.6,
+                "6934567143",
+                "Ορθοπεδικός",
+                10
+            ),
+            Doctor(
+                "Γιάννης Παπαδόπουλος",
+                "https://post.medicalnewstoday.com/wp-content/uploads/2019/01/Male_Doctor_732x549-thumbnail.jpg",
+                4.6,
+                "6934567143",
+                "Ορθοπεδικός",
+                10
+            ),
+            Doctor(
+                "Γιάννης Παπαδόπουλος",
+                "https://post.medicalnewstoday.com/wp-content/uploads/2019/01/Male_Doctor_732x549-thumbnail.jpg",
+                4.6,
+                "6934567143",
+                "Ορθοπεδικός",
+                10
+            ),
+            Doctor(
+                "Γιάννης Παπαδόπουλος",
+                "https://post.medicalnewstoday.com/wp-content/uploads/2019/01/Male_Doctor_732x549-thumbnail.jpg",
+                4.6,
+                "6934567143",
+                "Ορθοπεδικός",
+                10
+            ),
+            Doctor(
+                "Γιάννης Παπαδόπουλος",
+                "https://post.medicalnewstoday.com/wp-content/uploads/2019/01/Male_Doctor_732x549-thumbnail.jpg",
+                4.6,
+                "6934567143",
+                "Ορθοπεδικός",
+                10
+            )
         )
 
         val categories = listOf(
@@ -95,16 +138,16 @@ class OverviewViewModel(app : Application) : AndroidViewModel(app), ItemClickLis
             }
     }
 
-    fun observe(owner : LifecycleOwner){
-        overviewList.observe(owner, Observer{
+    fun observe(owner: LifecycleOwner) {
+        overviewList.observe(owner, Observer {
             adapter.submitList(it)
         })
     }
 
-    fun release(owner : LifecycleOwner) = overviewList.removeObservers(owner)
+    fun release(owner: LifecycleOwner) = overviewList.removeObservers(owner)
 
     override fun onItemTap(view: View) {
-        when(view.tag){
+        when (view.tag) {
             is HeaderModel -> callback.onProfileTap()
             is Doctor -> callback.onDoctorTap(view.tag as Doctor)
             is Category -> callback.onCategoryTap(view.tag as Category)

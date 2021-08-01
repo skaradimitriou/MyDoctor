@@ -21,7 +21,7 @@ class SearchParentViewHolder(itemView : View, callback : ItemClickListener) : Ab
                 itemView.doctor_name.text = data.fullname
                 itemView.doctor_category.text = data.category
                 itemView.doctor_rating.rating = data.rating.toFloat()
-                itemView.doctor_experience.text = data.experience.toString()
+                itemView.doctor_experience.text = "${data.experience.toString()} years"
 
                 Glide.with(itemView).load(data.image).into(itemView.doctor_img)
             }
