@@ -9,7 +9,7 @@
 
     <TextView
         android:id="@+id/category_name"
-        tools:text="Ορθοπεδικός"
+        tools:text="@string/doc_category"
         android:padding="@dimen/dimen_16"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -28,7 +28,7 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="@dimen/dimen_1"
         android:background="@color/navy_blue"
         app:layout_constraintTop_toBottomOf="@id/category_name"/>
 

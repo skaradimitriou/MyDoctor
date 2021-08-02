@@ -18,8 +18,7 @@
         android:id="@+id/doctor_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:textStyle="bold"
+        style="@style/text_h3_dark"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/doctor_img"
         app:layout_constraintTop_toTopOf="parent"
@@ -40,7 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dimen_20"
         android:paddingBottom="@dimen/dimen_10"
-        android:text="Appointment Location"
+        android:text="@string/appointment_location"
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/doctor_img" />
@@ -54,7 +53,7 @@
         android:padding="@dimen/dimen_16"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/appointment_location_header"
-        tools:text="Hello" />
+        tools:text="@string/appointment_location_value" />
 
     <TextView
         android:id="@+id/appointment_date_header"
@@ -62,7 +61,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dimen_20"
         android:paddingBottom="@dimen/dimen_10"
-        android:text="Date"
+        android:text="@string/appointment_date"
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/appointment_location" />
@@ -74,7 +73,7 @@
         android:background="@drawable/round_corners"
         android:backgroundTint="@color/white"
         android:padding="@dimen/dimen_16"
-        android:text="Select your appointment's date"
+        android:text="@string/select_your_appointment_s_date"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/appointment_date_header" />
 
@@ -84,7 +83,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dimen_20"
         android:paddingBottom="@dimen/dimen_10"
-        android:text="Time"
+        android:text="@string/appointment_time"
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/appointment_date" />
@@ -96,7 +95,7 @@
         android:background="@drawable/round_corners"
         android:backgroundTint="@color/white"
         android:padding="@dimen/dimen_16"
-        android:text="Select your appointment's time"
+        android:text="@string/select_your_appointment_s_time"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/appointment_time_header" />
 
@@ -106,7 +105,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dimen_20"
         android:paddingBottom="@dimen/dimen_10"
-        android:text="Describe your visit's reason"
+        android:text="@string/describe_your_visit_s_reason"
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/appointment_time" />
@@ -130,7 +129,7 @@
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:backgroundTint="@color/ocean_blue"
-        android:text="Save my Appointment"
+        android:text="@string/appointment_save_btn"
         android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent" />
 

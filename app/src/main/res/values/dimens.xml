@@ -18,4 +18,7 @@
     <dimen name="default_btn_height">56dp</dimen>
     <dimen name="dimen_280">280dp</dimen>
     <dimen name="dimen_140">140dp</dimen>
+    <dimen name="dimen_35">35dp</dimen>
+    <dimen name="dimen_1">1dp</dimen>
+    <dimen name="dimen_24">24dp</dimen>
 </resources>

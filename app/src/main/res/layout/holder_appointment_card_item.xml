@@ -18,7 +18,7 @@
         android:id="@+id/item_header"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="hello"
+        android:text="@string/app_name"
         style="@style/text_h4_dark"
         android:paddingTop="@dimen/dimen_16"
         android:layout_marginStart="@dimen/dimen_10"
@@ -29,16 +29,17 @@
         android:id="@+id/item_desc"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="value"
+        android:text="@string/app_name"
         android:paddingTop="@dimen/dimen_5"
         app:layout_constraintStart_toStartOf="@id/item_header"
         app:layout_constraintTop_toBottomOf="@id/item_header"/>
 
     <ImageView
         android:id="@+id/item_img"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
+        android:layout_width="@dimen/dimen_24"
+        android:layout_height="@dimen/dimen_24"
         android:layout_marginEnd="@dimen/dimen_10"
+        android:contentDescription="@string/app_name"
         app:layout_constraintBottom_toBottomOf="@+id/item_desc"
         app:layout_constraintEnd_toEndOf="parent"
         tools:src="@mipmap/ic_launcher" />

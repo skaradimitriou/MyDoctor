@@ -62,5 +62,14 @@
     <string name="appointment_time">Ώρα Ραντεβού</string>
     <string name="appointment_time_value">20:00</string>
     <string name="appointment_reason">Λόγος Επίσκεψης</string>
+    <string name="dialog_empty_desc">We couldn\'t find something for this query.\n Please try again</string>
+    <string name="hello_user">Hello User!</string>
+    <string name="looking_for_your_next_appointment">Looking for your next appointment?</string>
+    <string name="all_categories">All Categories</string>
+    <string name="search_hint">Search for a doctor</string>
+    <string name="select_your_appointment_s_date">Select your appointment\'s date</string>
+    <string name="select_your_appointment_s_time">Select your appointment\'s time</string>
+    <string name="describe_your_visit_s_reason">Describe your visit\'s reason</string>
+    <string name="appointment_save_btn">Αποθήκευση Ραντεβού</string>
 
 </resources>

@@ -15,7 +15,7 @@
         android:paddingBottom="@dimen/dimen_10"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="This is a h2 header" />
+        tools:text="@string/app_name" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/nested_recycler"

@@ -41,7 +41,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/appointment_doctor_img"
             app:layout_constraintTop_toBottomOf="@id/appointment_name"
-            android:text="Appointment Description" />
+            android:text="@string/appointment_reason" />
 
         <View
             android:id="@+id/appointment_divider"
@@ -60,7 +60,7 @@
             android:paddingBottom="@dimen/dimen_10"
             app:layout_constraintStart_toStartOf="@id/appointment_doctor_img"
             app:layout_constraintEnd_toEndOf="parent"
-            android:text="11:30am - 12:30am (1h)"
+            android:text="@string/appointment_time_value"
             app:layout_constraintTop_toBottomOf="@id/appointment_divider"/>
 
         <TextView
@@ -70,7 +70,7 @@
             android:paddingBottom="@dimen/dimen_10"
             app:layout_constraintStart_toStartOf="@id/appointment_doctor_img"
             app:layout_constraintEnd_toEndOf="parent"
-            android:text="Athens"
+            android:text="@string/appointment_location_value"
             app:layout_constraintTop_toBottomOf="@id/appointment_time"/>
 
 

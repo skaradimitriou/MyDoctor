@@ -21,7 +21,7 @@
         app:layout_constraintCircleRadius="15dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:queryHint="Search for a doctor"
+        app:queryHint="@string/search_hint"
         app:searchIcon="@drawable/search_icon_dark_grey" />
 
     <androidx.recyclerview.widget.RecyclerView

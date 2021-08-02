@@ -35,7 +35,7 @@
         android:gravity="center_horizontal"
         android:paddingTop="@dimen/dimen_10"
         android:paddingBottom="@dimen/dimen_10"
-        android:text="All Categories"
+        android:text="@string/all_categories"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="@id/home_category_img"
         app:layout_constraintStart_toStartOf="@id/home_category_img"
