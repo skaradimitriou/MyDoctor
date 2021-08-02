@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyDoctor">
-        <activity android:name=".features.reschedule.RescheduleActivity"></activity>
+        <activity android:name=".features.onboarding.OnboardingActivity"></activity>
+        <activity android:name=".features.editprofile.EditProfileActivity" />
+        <activity android:name=".features.reschedule.RescheduleActivity" />
         <activity android:name=".features.appointment_details.AppointmentDetailsActivity" />
         <activity android:name=".features.appointments.AppointmentsActivity" />
         <activity android:name=".features.results.DoctorResultsActivity" />
