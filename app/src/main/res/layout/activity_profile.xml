@@ -10,7 +10,7 @@
     <View
         android:id="@+id/profile_bg"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="@dimen/dimen_150"
         android:background="@color/ocean_blue"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -45,7 +45,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/profile_user_img"
         app:layout_constraintTop_toBottomOf="@id/profile_user_img"
-        tools:text="Stathis Karadimitriou" />
+        tools:text="@string/dummy_username" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/profile_details_recycler"
@@ -61,14 +61,10 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/profile_logout_btn"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:backgroundTint="@color/white"
-        android:text="Log out"
-        android:layout_margin="@dimen/dimen_16"
-        android:textAllCaps="false"
-        android:textColor="#ff0000"
+        android:layout_height="@dimen/button_56"
+        android:text="@string/log_out"
+        style="@style/button_white_profile"
         app:icon="@drawable/ic_power_button"
-        app:iconTint="#ff0000"
         app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

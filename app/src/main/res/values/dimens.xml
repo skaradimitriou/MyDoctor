@@ -21,4 +21,6 @@
     <dimen name="dimen_35">35dp</dimen>
     <dimen name="dimen_1">1dp</dimen>
     <dimen name="dimen_24">24dp</dimen>
+    <dimen name="button_56">56dp</dimen>
+    <dimen name="dimen_150">150dp</dimen>
 </resources>

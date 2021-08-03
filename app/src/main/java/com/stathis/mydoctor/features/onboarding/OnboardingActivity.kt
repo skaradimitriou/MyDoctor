@@ -5,6 +5,8 @@ import com.stathis.mydoctor.abstraction.AbstractActivity
 
 class OnboardingActivity : AbstractActivity(R.layout.activity_onboarding) {
 
+
+
     override fun init() {
         //
     }

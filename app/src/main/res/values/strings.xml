@@ -71,5 +71,7 @@
     <string name="select_your_appointment_s_time">Select your appointment\'s time</string>
     <string name="describe_your_visit_s_reason">Describe your visit\'s reason</string>
     <string name="appointment_save_btn">Αποθήκευση Ραντεβού</string>
+    <string name="log_out">Log out</string>
+    <string name="dummy_username">Stathis Karadimitriou</string>
 
 </resources>

@@ -28,5 +28,6 @@
     <color name="darkest_grey_alt">#777</color>
     <color name="yellow_rating_star">#fdcc0d</color>
     <color name="cancel_btn_color">#70ff0000</color>
+    <color name="red">#ff0000</color>
 
 </resources>
