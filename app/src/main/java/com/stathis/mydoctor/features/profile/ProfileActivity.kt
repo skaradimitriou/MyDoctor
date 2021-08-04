@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.stathis.mydoctor.R
 import com.stathis.mydoctor.abstraction.AbstractActivity
+import com.stathis.mydoctor.features.editprofile.EditProfileActivity
 import com.stathis.mydoctor.features.login.LoginActivity
 import com.stathis.mydoctor.models.User
 import kotlinx.android.synthetic.main.activity_profile.*
@@ -21,6 +22,10 @@ class ProfileActivity : AbstractActivity(R.layout.activity_profile) {
     override fun running() {
         profile_logout_btn.setOnClickListener {
             viewModel.logout()
+        }
+
+        edit_profile_btn.setOnClickListener {
+            startActivity(Intent(this, EditProfileActivity::class.java))
         }
 
         observe()
@@ -46,7 +51,7 @@ class ProfileActivity : AbstractActivity(R.layout.activity_profile) {
     }
 
     private fun binduserData(user: User) {
-        when(user.userPhoto.isNullOrEmpty()){
+        when (user.userPhoto.isNullOrEmpty()) {
             true -> profile_user_img.setImageResource(R.drawable.empty_profile_photo)
             false -> Glide.with(this).load(user.userPhoto).into(profile_user_img)
         }

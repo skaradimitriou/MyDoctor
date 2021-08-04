@@ -73,5 +73,6 @@
     <string name="appointment_save_btn">Αποθήκευση Ραντεβού</string>
     <string name="log_out">Log out</string>
     <string name="dummy_username">Stathis Karadimitriou</string>
+    <string name="save_changes">Αποθήκευση Αλλαγών</string>
 
 </resources>
