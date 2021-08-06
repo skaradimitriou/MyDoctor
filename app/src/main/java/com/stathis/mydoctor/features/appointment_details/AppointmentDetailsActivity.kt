@@ -47,10 +47,6 @@ class AppointmentDetailsActivity : AbstractActivity(R.layout.activity_appointmen
             showDialog()
         }
 
-        video_call.setOnClickListener {
-            //FIXME: Feature will be added in version 2
-        }
-
         viewModel.appointmentCancelled.observe(this, Observer {
             when (it) {
                 true -> {
