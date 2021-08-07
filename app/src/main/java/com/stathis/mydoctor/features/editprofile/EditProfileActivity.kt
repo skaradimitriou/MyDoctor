@@ -5,6 +5,7 @@ import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.stathis.mydoctor.R
 import com.stathis.mydoctor.abstraction.AbstractActivity
 import com.stathis.mydoctor.models.User
@@ -12,6 +13,7 @@ import kotlinx.android.synthetic.main.activity_edit_profile.*
 import kotlinx.android.synthetic.main.activity_edit_profile.profile_user_img
 import kotlinx.android.synthetic.main.activity_edit_profile.profile_user_name
 import kotlinx.android.synthetic.main.activity_profile.*
+import kotlinx.android.synthetic.main.bottom_sheet_dialog_upload_options.view.*
 import pub.devrel.easypermissions.AppSettingsDialog
 import pub.devrel.easypermissions.EasyPermissions
 
@@ -30,7 +32,7 @@ class EditProfileActivity : AbstractActivity(R.layout.activity_edit_profile), Ea
         profile_user_img.setOnClickListener{
             //open dialog with options
             when(hasPermissions()){
-                true -> uploadPhoto()
+                true -> showUploadOptions()
                 false -> askForPermissions()
             }
         }
@@ -40,6 +42,23 @@ class EditProfileActivity : AbstractActivity(R.layout.activity_edit_profile), Ea
         }
 
         observeData()
+    }
+
+    private fun showUploadOptions() {
+        val view = layoutInflater.inflate(R.layout.bottom_sheet_dialog_upload_options, null)
+        val dialog = BottomSheetDialog(this,R.style.BottomSheetDialogTheme).also{
+            it.setContentView(view)
+            it.show()
+        }
+        view.closeDialog.setOnClickListener{ dialog.dismiss() }
+
+        view.uploadFromCamera.setOnClickListener{
+            Toast.makeText(this,"uploadFromCamera",Toast.LENGTH_LONG).show()
+        }
+
+        view.uploadFromGallery.setOnClickListener{
+            Toast.makeText(this,"PuploadFromGallery",Toast.LENGTH_LONG).show()
+        }
     }
 
     private fun uploadPhoto() {

@@ -74,5 +74,7 @@
     <string name="log_out">Log out</string>
     <string name="dummy_username">Stathis Karadimitriou</string>
     <string name="save_changes">Αποθήκευση Αλλαγών</string>
+    <string name="dialog_open_camera">Τραβήξτε μια φωτογραφία με την Κάμερα</string>
+    <string name="dialog_open_gallery">Ανέβασμα απο την Συλλογή φωτογραφιών</string>
 
 </resources>
