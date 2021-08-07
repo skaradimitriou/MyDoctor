@@ -6,7 +6,6 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.provider.MediaStore
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
@@ -17,7 +16,6 @@ import com.stathis.mydoctor.models.User
 import kotlinx.android.synthetic.main.activity_edit_profile.*
 import kotlinx.android.synthetic.main.activity_edit_profile.profile_user_img
 import kotlinx.android.synthetic.main.activity_edit_profile.profile_user_name
-import kotlinx.android.synthetic.main.activity_profile.*
 import kotlinx.android.synthetic.main.bottom_sheet_dialog_upload_options.view.*
 import pub.devrel.easypermissions.AppSettingsDialog
 import pub.devrel.easypermissions.EasyPermissions
@@ -33,7 +31,15 @@ class EditProfileActivity : AbstractActivity(R.layout.activity_edit_profile), Ea
     }
 
     override fun running() {
+        /*
+            FIXME: Users should be able to:
+                   1. enter their data in the input texts
+                   2. save their new data from the input texts
+         */
+
         askForPermissions()
+
+        profile_details_recycler.adapter = viewModel.adapter
 
         profile_user_img.setOnClickListener{
             //open dialog with options
@@ -67,10 +73,6 @@ class EditProfileActivity : AbstractActivity(R.layout.activity_edit_profile), Ea
             uploadFromGallery()
             dialog.dismiss()
         }
-
-        viewModel.userImageUrl.observe(this,Observer{
-            it?.let { Glide.with(this).load(it).into(profile_user_img) }
-        })
     }
 
     private fun uploadFromCamera(){
@@ -102,6 +104,10 @@ class EditProfileActivity : AbstractActivity(R.layout.activity_edit_profile), Ea
         viewModel.userData.observe(this, Observer {
             it?.let { binduserData(it) }
         })
+
+        viewModel.userImageUrl.observe(this,Observer{
+            it?.let { Glide.with(this).load(it).into(profile_user_img) }
+        })
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
@@ -109,7 +115,7 @@ class EditProfileActivity : AbstractActivity(R.layout.activity_edit_profile), Ea
         EasyPermissions.onRequestPermissionsResult(requestCode,permissions,grantResults,this)
     }
 
-    override fun stopped() {}
+    override fun stopped() = viewModel.release(this)
 
     private fun binduserData(user: User) {
         when (user.userPhoto.isNullOrEmpty()) {

@@ -76,5 +76,7 @@
     <string name="save_changes">Αποθήκευση Αλλαγών</string>
     <string name="dialog_open_camera">Τραβήξτε μια φωτογραφία με την Κάμερα</string>
     <string name="dialog_open_gallery">Ανέβασμα απο την Συλλογή φωτογραφιών</string>
+    <string name="get_started">Get started</string>
+    <string name="skip">Skip</string>
 
 </resources>

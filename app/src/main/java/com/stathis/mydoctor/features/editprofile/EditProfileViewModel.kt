@@ -3,8 +3,10 @@ package com.stathis.mydoctor.features.editprofile
 import android.graphics.Bitmap
 import android.net.Uri
 import android.util.Log
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
@@ -12,6 +14,7 @@ import com.stathis.mydoctor.features.profile.adapter.ProfileAdapter
 import com.stathis.mydoctor.features.profile.model.ProfileItem
 import com.stathis.mydoctor.models.User
 import com.stathis.mydoctor.utils.TAG
+import kotlinx.android.synthetic.main.activity_edit_profile.*
 import java.io.ByteArrayOutputStream
 
 class EditProfileViewModel : ViewModel() {
@@ -108,5 +111,10 @@ class EditProfileViewModel : ViewModel() {
                     }
                 }
             }
+    }
+
+    fun release(owner : LifecycleOwner) {
+        userData.removeObservers(owner)
+        userImageUrl.removeObservers(owner)
     }
 }
