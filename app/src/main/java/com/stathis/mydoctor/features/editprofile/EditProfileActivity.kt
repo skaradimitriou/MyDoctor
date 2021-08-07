@@ -1,7 +1,12 @@
 package com.stathis.mydoctor.features.editprofile
 
 import android.Manifest
+import android.app.Activity
+import android.content.Intent
+import android.graphics.Bitmap
+import android.provider.MediaStore
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
@@ -20,7 +25,8 @@ import pub.devrel.easypermissions.EasyPermissions
 class EditProfileActivity : AbstractActivity(R.layout.activity_edit_profile), EasyPermissions.PermissionCallbacks {
 
     private lateinit var viewModel: EditProfileViewModel
-    private val REQUEST_CODE = 1
+    private val REQUEST_IMAGE_CAPTURE = 100
+    private val IMAGE_PICK_CODE = 200
 
     override fun init() {
         viewModel = ViewModelProvider(this).get(EditProfileViewModel::class.java)
@@ -53,21 +59,32 @@ class EditProfileActivity : AbstractActivity(R.layout.activity_edit_profile), Ea
         view.closeDialog.setOnClickListener{ dialog.dismiss() }
 
         view.uploadFromCamera.setOnClickListener{
-            Toast.makeText(this,"uploadFromCamera",Toast.LENGTH_LONG).show()
+            uploadFromCamera()
+            dialog.dismiss()
         }
 
         view.uploadFromGallery.setOnClickListener{
-            Toast.makeText(this,"PuploadFromGallery",Toast.LENGTH_LONG).show()
+            uploadFromGallery()
+            dialog.dismiss()
+        }
+
+        viewModel.userImageUrl.observe(this,Observer{
+            it?.let { Glide.with(this).load(it).into(profile_user_img) }
+        })
+    }
+
+    private fun uploadFromCamera(){
+        Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { pictureIntent ->
+            pictureIntent.resolveActivity(this.packageManager!!)?.also {
+                startActivityForResult(pictureIntent, REQUEST_IMAGE_CAPTURE)
+            }
         }
     }
 
-    private fun uploadPhoto() {
-        /*
-        FIXME: open dialog fragment to choose gallery or camera
-                upload photo to firebase storage
-                then save the photo to firebase firestore
-         */
-
+    private fun uploadFromGallery(){
+        val intent = Intent(Intent.ACTION_PICK)
+        intent.type = "image/*"
+        startActivityForResult(intent, IMAGE_PICK_CODE)
     }
 
     private fun hasPermissions() = EasyPermissions.hasPermissions(
@@ -75,9 +92,10 @@ class EditProfileActivity : AbstractActivity(R.layout.activity_edit_profile), Ea
     )
 
     private fun askForPermissions() {
-        EasyPermissions.requestPermissions(this,
-            "This app cant work without gallery permissions",REQUEST_CODE,
+        EasyPermissions.requestPermissions(this,"This app cant work without gallery permissions",REQUEST_IMAGE_CAPTURE,
         Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.READ_EXTERNAL_STORAGE)
+        EasyPermissions.requestPermissions(this,"This app cant work without gallery permissions",IMAGE_PICK_CODE,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.READ_EXTERNAL_STORAGE)
     }
 
     private fun observeData() {
@@ -112,6 +130,23 @@ class EditProfileActivity : AbstractActivity(R.layout.activity_edit_profile), Ea
             AppSettingsDialog.Builder(this).build().show()
         } else {
             askForPermissions()
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            val imgBitmap = data?.extras?.get("data") as Bitmap
+            viewModel.saveCameraPhotoToDb(imgBitmap)
+
+        } else if (resultCode == Activity.RESULT_OK && requestCode == IMAGE_PICK_CODE) {
+            // I have to save the url to the db
+            val imageUri = data?.data
+            if (imageUri != null) {
+                viewModel.saveGalleryPhotoToDb(imageUri)
+                viewModel.getUserPhoto()
+            }
         }
     }
 }
