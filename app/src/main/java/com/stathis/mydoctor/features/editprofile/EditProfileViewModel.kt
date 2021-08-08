@@ -10,6 +10,7 @@ import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
+import com.stathis.mydoctor.features.editprofile.adapter.EditProfileAdapter
 import com.stathis.mydoctor.features.profile.adapter.ProfileAdapter
 import com.stathis.mydoctor.features.profile.model.ProfileItem
 import com.stathis.mydoctor.models.User
@@ -22,8 +23,9 @@ class EditProfileViewModel : ViewModel() {
     val auth by lazy { FirebaseAuth.getInstance() }
     val firestore by lazy { FirebaseFirestore.getInstance() }
     val userData = MutableLiveData<User>()
-    val adapter = ProfileAdapter()
+    val adapter = EditProfileAdapter()
     val userImageUrl = MutableLiveData<String>()
+    var editableMode = false
 
     init {
         getUserData()
@@ -116,5 +118,14 @@ class EditProfileViewModel : ViewModel() {
     fun release(owner : LifecycleOwner) {
         userData.removeObservers(owner)
         userImageUrl.removeObservers(owner)
+    }
+
+    fun setEditMode() {
+        editableMode = !editableMode
+        adapter.changeEditMode(editableMode)
+    }
+
+    fun saveDataToFirestore() {
+        //
     }
 }

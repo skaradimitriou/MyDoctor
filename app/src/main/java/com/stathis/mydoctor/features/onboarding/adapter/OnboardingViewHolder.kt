@@ -4,6 +4,7 @@ import android.view.View
 import com.stathis.mydoctor.abstraction.AbstractViewHolder
 import com.stathis.mydoctor.abstraction.LocalModel
 import com.stathis.mydoctor.features.onboarding.model.OnboardingItem
+import kotlinx.android.synthetic.main.holder_onboarding_item.view.*
 
 class OnboardingViewHolder(itemView : View) : AbstractViewHolder(itemView) {
 
