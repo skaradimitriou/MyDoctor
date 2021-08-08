@@ -17,19 +17,19 @@ class OnboardingViewModel : ViewModel() {
         adapter.submitList(
             listOf(
                 OnboardingItem(
-                    R.drawable.ic_stethoscope,
-                    "Onboarding title 1",
-                    "Onboarding desc 1"
+                    R.drawable.ic_doctor,
+                    "Search for a doctor",
+                    "Search for doctors by name from our search screen. Your latest searches will be shown there."
                 ),
                 OnboardingItem(
-                    R.drawable.ic_ophthalmologist,
-                    "Onboarding title 2",
-                    "Onboarding desc 2"
+                    R.drawable.ic_doctor,
+                    "Search doctors by category",
+                    "Looking for a specific doctor category? We've got you covered! Just go to all categories and find what you're looking for."
                 ),
                 OnboardingItem(
-                    R.drawable.ic_dermatologist,
-                    "Onboarding title 3",
-                    "Onboarding desc 3"
+                    R.drawable.ic_calendar_onboarding,
+                    "Add a doctor appointment",
+                    "Once you have found your doctor, you're able to add an appointment to your list."
                 )
             )
         )
