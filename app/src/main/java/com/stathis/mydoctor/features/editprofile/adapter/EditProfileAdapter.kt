@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.ListAdapter
 import com.stathis.mydoctor.R
 import com.stathis.mydoctor.abstraction.DiffUtilClass
 import com.stathis.mydoctor.abstraction.LocalModel
-import com.stathis.mydoctor.features.profile.adapter.ProfileViewHolder
 
 class EditProfileAdapter() : ListAdapter<LocalModel, EditProfileViewHolder>(DiffUtilClass<LocalModel>()) {
 

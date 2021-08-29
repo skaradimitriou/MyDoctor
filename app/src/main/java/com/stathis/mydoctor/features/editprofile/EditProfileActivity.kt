@@ -5,6 +5,7 @@ import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
 import android.provider.MediaStore
+import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -41,6 +42,8 @@ class EditProfileActivity : AbstractActivity(R.layout.activity_edit_profile), Ea
 
         profile_details_recycler.adapter = viewModel.adapter
 
+        val test = ""
+
         viewModel.setEditMode()
 
         profile_user_img.setOnClickListener{
@@ -53,8 +56,14 @@ class EditProfileActivity : AbstractActivity(R.layout.activity_edit_profile), Ea
 
         edit_profile_save_btn.setOnClickListener{
             //save user data to firestore
-            viewModel.saveDataToFirestore()
+
             viewModel.setEditMode()
+
+            /*
+            FIXME: Add the new input to firestore
+             */
+            viewModel.saveDataToFirestore()
+
         }
 
         observeData()
@@ -131,9 +140,7 @@ class EditProfileActivity : AbstractActivity(R.layout.activity_edit_profile), Ea
         viewModel.bindProfileDetails(user)
     }
 
-    override fun onPermissionsGranted(requestCode: Int, perms: MutableList<String>) {
-        Toast.makeText(this,"Permissions Granted",Toast.LENGTH_LONG).show()
-    }
+    override fun onPermissionsGranted(requestCode: Int, perms: MutableList<String>) {}
 
     override fun onPermissionsDenied(requestCode: Int, perms: MutableList<String>) {
         if(EasyPermissions.somePermissionPermanentlyDenied(this, perms)){
