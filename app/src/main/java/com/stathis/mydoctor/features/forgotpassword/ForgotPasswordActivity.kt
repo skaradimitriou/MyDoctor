@@ -1,5 +1,7 @@
 package com.stathis.mydoctor.features.forgotpassword
 
+import android.os.Handler
+import android.os.Looper
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.stathis.mydoctor.R
@@ -23,7 +25,7 @@ class ForgotPasswordActivity : AbstractActivity(R.layout.activity_forgot_passwor
         viewModel.userVerified.observe(this, Observer {
             when (it) {
                 true -> showPopup("An e-mail has been sent to the above address.")
-                false -> { } //handle this
+                false -> showError("An error has occured. Please try again")
             }
         })
     }
@@ -35,8 +37,14 @@ class ForgotPasswordActivity : AbstractActivity(R.layout.activity_forgot_passwor
         Snacky.builder().setView(findViewById(R.id.forgot_pass_screen)).success().setText(message)
             .show()
 
-        /*
-        FIXME: consider adding onBackPressed after some time
-         */
+        Handler(Looper.getMainLooper()).postDelayed({
+            onBackPressed()
+            finish()
+        }, 3000)
+    }
+
+    private fun showError(message : String) {
+        Snacky.builder().setView(findViewById(R.id.forgot_pass_screen)).error().setText(message)
+            .show()
     }
 }
