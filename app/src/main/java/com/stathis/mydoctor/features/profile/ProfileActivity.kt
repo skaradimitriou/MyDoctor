@@ -20,6 +20,10 @@ class ProfileActivity : AbstractActivity(R.layout.activity_profile) {
     }
 
     override fun running() {
+        /*
+            FIXME: Implement collapsing toolbar
+         */
+
         profile_logout_btn.setOnClickListener {
             viewModel.logout()
         }
