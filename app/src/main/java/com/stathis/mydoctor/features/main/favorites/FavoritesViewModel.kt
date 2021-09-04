@@ -11,6 +11,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.gson.Gson
 import com.stathis.mydoctor.abstraction.AbstractAndroidViewModel
 import com.stathis.mydoctor.abstraction.ItemClickListener
+import com.stathis.mydoctor.callbacks.DoctorClickListener
 import com.stathis.mydoctor.features.results.adapter.DoctorResultsAdapter
 import com.stathis.mydoctor.models.Doctor
 
@@ -21,9 +22,14 @@ class FavoritesViewModel(app : Application) : AbstractAndroidViewModel(app), Ite
     val favorites = MutableLiveData<List<Doctor>>()
     private var favoriteList = mutableListOf<Doctor>()
     val adapter = DoctorResultsAdapter(this)
+    private lateinit var callback : DoctorClickListener
 
-    init{
+    init {
         getUserFavorites()
+    }
+
+    fun addCallback(callback : DoctorClickListener){
+        this.callback = callback
     }
 
     private fun getUserFavorites(){
@@ -54,9 +60,7 @@ class FavoritesViewModel(app : Application) : AbstractAndroidViewModel(app), Ite
 
     override fun onItemTap(view: View) {
         when(view.tag){
-            is Doctor -> {
-                Log.d("","")
-            }
+            is Doctor -> callback.onDoctorTap(view.tag as Doctor)
         }
     }
 }
