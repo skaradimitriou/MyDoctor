@@ -8,6 +8,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Source
 import com.stathis.mydoctor.R
+import com.stathis.mydoctor.abstraction.AbstractAndroidViewModel
 import com.stathis.mydoctor.abstraction.ItemClickListener
 import com.stathis.mydoctor.abstraction.LocalModel
 import com.stathis.mydoctor.callbacks.HomeClickListener
@@ -21,7 +22,7 @@ import com.stathis.mydoctor.utils.DEFAULT_IMG
 import com.stathis.mydoctor.utils.DEFAULT_USERNAME
 import com.stathis.mydoctor.utils.TAG
 
-class OverviewViewModel(app: Application) : AndroidViewModel(app), ItemClickListener {
+class OverviewViewModel(app: Application) : AbstractAndroidViewModel(app), ItemClickListener {
 
     val resources = app.resources
     private val firestore by lazy { FirebaseFirestore.getInstance() }
@@ -98,14 +99,14 @@ class OverviewViewModel(app: Application) : AndroidViewModel(app), ItemClickList
         )
 
         val categories = listOf(
-            Category(resources.getString(R.string.pathologos), R.drawable.ic_stethoscope),
-            Category(resources.getString(R.string.dermatologos), R.drawable.ic_dermatologist),
-            Category(resources.getString(R.string.ofthalmiatros), R.drawable.ic_ophthalmologist),
-            Category(resources.getString(R.string.orthopedikos), R.drawable.ic_orthopedics),
-            Category(resources.getString(R.string.kardiologos), R.drawable.ic_cardiologist),
-            Category(resources.getString(R.string.wrl), R.drawable.ic_wrl),
-            Category(resources.getString(R.string.xeirourgos), R.drawable.ic_surgery),
-            Category(resources.getString(R.string.neurologos), R.drawable.ic_neurology),
+            Category(getString(R.string.pathologos), R.drawable.ic_stethoscope),
+            Category(getString(R.string.dermatologos), R.drawable.ic_dermatologist),
+            Category(getString(R.string.ofthalmiatros), R.drawable.ic_ophthalmologist),
+            Category(getString(R.string.orthopedikos), R.drawable.ic_orthopedics),
+            Category(getString(R.string.kardiologos), R.drawable.ic_cardiologist),
+            Category(getString(R.string.wrl), R.drawable.ic_wrl),
+            Category(getString(R.string.xeirourgos), R.drawable.ic_surgery),
+            Category(getString(R.string.neurologos), R.drawable.ic_neurology),
             AllCategoriesModel()
         )
 

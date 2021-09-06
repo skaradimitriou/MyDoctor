@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.stathis.mydoctor.R
 import com.stathis.mydoctor.abstraction.AbstractActivity
 import com.stathis.mydoctor.features.main.MainActivity
+import com.stathis.mydoctor.features.onboarding.OnboardingActivity
 import kotlinx.android.synthetic.main.activity_register.*
 
 class RegisterActivity : AbstractActivity(R.layout.activity_register) {
@@ -31,7 +32,7 @@ class RegisterActivity : AbstractActivity(R.layout.activity_register) {
         viewModel.userRegisted.observe(this, Observer {
             when(it){
                 true -> {
-                    startActivity(Intent(this, MainActivity::class.java))
+                    startActivity(Intent(this, OnboardingActivity::class.java))
                     finish()
                 }
                 false -> {} // throw some kind of error

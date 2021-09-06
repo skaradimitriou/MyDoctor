@@ -20,6 +20,14 @@
     <string name="working_hours_dummy">Mon-Friday from 9:00 to 18:00</string>
     <string name="get_an_appointment">Get an appointment</string>
 
+    <!-- Onboarding Screen -->
+    <string name="onboarding_header_one">Search for a doctor</string>
+    <string name="onboarding_desc_one">Search for doctors by name from our search screen. Your latest searches will be shown there.</string>
+    <string name="onboarding_header_two">Search doctors by category</string>
+    <string name="onboarding_desc_two">Looking for a specific doctor category? We\'ve got you covered! Just go to all categories and find what you're looking for.</string>
+    <string name="onboarding_header_three">Add a doctor appointment</string>
+    <string name="onboarding_desc_three">Once you have found your doctor, you\'re able to add an appointment to your list.</string>
+
     <!-- Doctor Categories -->
     <string name="pathologos">Παθολόγος</string>
     <string name="dermatologos">Δερματολόγος</string>
@@ -45,6 +53,11 @@
     <string name="popup_desc">Are you sure that you want to cancel your appointment?</string>
     <string name="popup_positive_btn">Yes</string>
     <string name="popup_negative_btn">No</string>
+
+    <!-- Profile Screen -->
+    <string name="profile_screen_email">Email</string>
+    <string name="profile_screen_telephone">Telephone</string>
+    <string name="profile_screen_location">Location</string>
 
     <!-- Doctors Details -->
     <string name="doc_name">Δρ. Γιάννης Πουλόπουλος</string>

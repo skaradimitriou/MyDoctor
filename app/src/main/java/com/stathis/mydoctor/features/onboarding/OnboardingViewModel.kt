@@ -1,11 +1,13 @@
 package com.stathis.mydoctor.features.onboarding
 
+import android.app.Application
 import androidx.lifecycle.ViewModel
 import com.stathis.mydoctor.R
+import com.stathis.mydoctor.abstraction.AbstractAndroidViewModel
 import com.stathis.mydoctor.features.onboarding.adapter.OnboardingAdapter
 import com.stathis.mydoctor.features.onboarding.model.OnboardingItem
 
-class OnboardingViewModel : ViewModel() {
+class OnboardingViewModel(app : Application) : AbstractAndroidViewModel(app) {
 
     val adapter by lazy { OnboardingAdapter() }
 
@@ -18,18 +20,18 @@ class OnboardingViewModel : ViewModel() {
             listOf(
                 OnboardingItem(
                     R.drawable.ic_doctor,
-                    "Search for a doctor",
-                    "Search for doctors by name from our search screen. Your latest searches will be shown there."
+                    getString(R.string.onboarding_header_one),
+                    getString(R.string.onboarding_desc_one)
                 ),
                 OnboardingItem(
                     R.drawable.ic_doctor,
-                    "Search doctors by category",
-                    "Looking for a specific doctor category? We've got you covered! Just go to all categories and find what you're looking for."
+                    getString(R.string.onboarding_header_two),
+                    getString(R.string.onboarding_desc_two)
                 ),
                 OnboardingItem(
                     R.drawable.ic_calendar_onboarding,
-                    "Add a doctor appointment",
-                    "Once you have found your doctor, you're able to add an appointment to your list."
+                    getString(R.string.onboarding_header_three),
+                    getString(R.string.onboarding_desc_three)
                 )
             )
         )

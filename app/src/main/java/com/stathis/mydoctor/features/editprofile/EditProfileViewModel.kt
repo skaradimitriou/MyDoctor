@@ -1,5 +1,6 @@
 package com.stathis.mydoctor.features.editprofile
 
+import android.app.Application
 import android.graphics.Bitmap
 import android.net.Uri
 import android.util.Log
@@ -10,6 +11,8 @@ import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
+import com.stathis.mydoctor.R
+import com.stathis.mydoctor.abstraction.AbstractAndroidViewModel
 import com.stathis.mydoctor.features.editprofile.adapter.EditProfileAdapter
 import com.stathis.mydoctor.features.profile.adapter.ProfileAdapter
 import com.stathis.mydoctor.features.profile.model.ProfileItem
@@ -18,7 +21,7 @@ import com.stathis.mydoctor.utils.TAG
 import kotlinx.android.synthetic.main.activity_edit_profile.*
 import java.io.ByteArrayOutputStream
 
-class EditProfileViewModel : ViewModel() {
+class EditProfileViewModel(app : Application) : AbstractAndroidViewModel(app) {
 
     val auth by lazy { FirebaseAuth.getInstance() }
     val firestore by lazy { FirebaseFirestore.getInstance() }
@@ -50,9 +53,9 @@ class EditProfileViewModel : ViewModel() {
 
     fun bindProfileDetails(user: User) {
         val list = listOf(
-            ProfileItem("Email", user.email),
-            ProfileItem("Telephone", user.telephone),
-            ProfileItem("Location", user.location)
+            ProfileItem(getString(R.string.profile_screen_email), user.email),
+            ProfileItem(getString(R.string.profile_screen_telephone), user.telephone),
+            ProfileItem(getString(R.string.profile_screen_location), user.location)
         )
 
         adapter.submitList(list)
@@ -125,7 +128,5 @@ class EditProfileViewModel : ViewModel() {
         adapter.changeEditMode(editableMode)
     }
 
-    fun saveDataToFirestore() {
-        //
-    }
+    fun saveDataToFirestore() {}
 }
