@@ -62,6 +62,8 @@ dependencies {
 
     implementation 'com.github.matecode:Snacky:1.1.5' //Snackbars
 
+    implementation 'com.akexorcist:snap-time-picker:1.0.3' //Time picker
+
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'

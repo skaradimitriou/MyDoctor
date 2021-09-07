@@ -42,9 +42,9 @@ class OverviewViewModel(app: Application) : AbstractAndroidViewModel(app), ItemC
 
     fun initDummyList(user: User) {
         val promoList = listOf(
-            PromoItem("This is a header", "", R.drawable.ic_stethoscope),
-            PromoItem("This is a header", "", R.drawable.ic_stethoscope),
-            PromoItem("This is a header", "", R.drawable.ic_stethoscope)
+            PromoItem(getString(R.string.overvie_promo_header), "", R.drawable.ic_stethoscope),
+            PromoItem(getString(R.string.overvie_promo_header), "", R.drawable.ic_stethoscope),
+            PromoItem(getString(R.string.overvie_promo_header), "", R.drawable.ic_stethoscope)
         )
 
         val doctorList = listOf(

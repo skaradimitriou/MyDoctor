@@ -1,5 +1,6 @@
 package com.stathis.mydoctor.features.appointment_details
 
+import android.app.Application
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
@@ -8,12 +9,13 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.gson.Gson
 import com.stathis.mydoctor.R
+import com.stathis.mydoctor.abstraction.AbstractAndroidViewModel
 import com.stathis.mydoctor.abstraction.LocalModel
 import com.stathis.mydoctor.features.appointment_details.adapter.AppointmentDetailsAdapter
 import com.stathis.mydoctor.features.appointment_details.model.AppointmentDetail
 import com.stathis.mydoctor.models.Appointment
 
-class AppointmentDetailsViewModel : ViewModel() {
+class AppointmentDetailsViewModel(app : Application) : AbstractAndroidViewModel(app) {
 
     private val firestore by lazy { FirebaseFirestore.getInstance() }
     private val auth by lazy { FirebaseAuth.getInstance() }
@@ -28,10 +30,10 @@ class AppointmentDetailsViewModel : ViewModel() {
 
     fun bindAppointmentDetails(data: Appointment) {
         val list = listOf(
-            AppointmentDetail("Date & Time","${data.date} | ${data.hour}", R.drawable.ic_monthly_calendar),
-            AppointmentDetail("Location","Athens",R.drawable.ic_location),
-            AppointmentDetail("Type of visit",data.reason,R.drawable.ic_visit_reason),
-            AppointmentDetail("Estimated Cost","25$",R.drawable.ic_euro))
+            AppointmentDetail(getString(R.string.date_time),"${data.date} | ${data.hour}", R.drawable.ic_monthly_calendar),
+            AppointmentDetail(getString(R.string.location),"Athens",R.drawable.ic_location),
+            AppointmentDetail(getString(R.string.type_of_visit),data.reason,R.drawable.ic_visit_reason),
+            AppointmentDetail(getString(R.string.estimated_cost),"25$",R.drawable.ic_euro))
 
         details.value = list
     }

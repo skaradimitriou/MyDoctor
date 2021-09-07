@@ -1,5 +1,6 @@
 package com.stathis.mydoctor.features.results
 
+import android.app.Application
 import android.util.Log
 import android.view.View
 import androidx.lifecycle.LifecycleOwner
@@ -8,6 +9,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Source
+import com.stathis.mydoctor.R
+import com.stathis.mydoctor.abstraction.AbstractAndroidViewModel
 import com.stathis.mydoctor.abstraction.ItemClickListener
 import com.stathis.mydoctor.callbacks.DoctorClickListener
 import com.stathis.mydoctor.features.main.search.models.EmptyQuery
@@ -15,7 +18,7 @@ import com.stathis.mydoctor.features.main.search.models.EmptyResult
 import com.stathis.mydoctor.features.results.adapter.DoctorResultsAdapter
 import com.stathis.mydoctor.models.Doctor
 
-class DoctorResultsViewModel : ViewModel(), ItemClickListener {
+class DoctorResultsViewModel(app : Application) : AbstractAndroidViewModel(app), ItemClickListener {
 
     private val firestore =  FirebaseFirestore.getInstance()
     private lateinit var callback: DoctorClickListener
@@ -53,8 +56,8 @@ class DoctorResultsViewModel : ViewModel(), ItemClickListener {
             true -> {
                 adapter.submitList(
                     listOf(EmptyResult(
-                            "No Doctors Available",
-                            "We couldn't find doctor results for this category. Once we got results, they will appear here.")))
+                            getString(R.string.doc_results_header),
+                        getString(R.string.doc_results_desc))))
             }
 
             false -> adapter.submitList(list)

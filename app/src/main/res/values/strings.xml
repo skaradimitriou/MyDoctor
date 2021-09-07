@@ -63,6 +63,19 @@
     <string name="doc_name">Δρ. Γιάννης Πουλόπουλος</string>
     <string name="doc_category">Δερματολόγος</string>
 
+    <!-- Overview Screen -->
+    <string name="overvie_promo_header">This is a header</string>
+
+    <!-- Appointment Details Screen -->
+    <string name="date_time">Date &amp; Time</string>
+    <string name="location">Location</string>
+    <string name="type_of_visit">Type of visit</string>
+    <string name="estimated_cost">Estimated Cost</string>
+
+    <!-- Reschedule Screen -->
+    <string name="doc_results_header">No Doctors Available</string>
+    <string name="doc_results_desc">We couldn\'t find doctor results for this category. Once we got results, they will appear here.</string>
+
     <!-- Appointment Details -->
     <string name="reschedule">Αλλαγή Ραντεβού</string>
     <string name="cancel">Ακύρωση</string>
@@ -92,5 +105,11 @@
     <string name="get_started">Get started</string>
     <string name="skip">Skip</string>
     <string name="forgot_pass_btn">Send E-mail</string>
+
+    <string name="time_header">Select Appointment time</string>
+    <string name="time_prefix">&gt;&gt;</string>
+    <string name="time_suffix">&lt;&lt;</string>
+
+
 
 </resources>
