@@ -15,6 +15,7 @@ import com.google.gson.Gson
 import com.stathis.mydoctor.R
 import com.stathis.mydoctor.abstraction.AbstractActivity
 import com.stathis.mydoctor.features.main.MainActivity
+import com.stathis.mydoctor.models.Appointment
 import com.stathis.mydoctor.models.Doctor
 import kotlinx.android.synthetic.main.activity_appointments.*
 
@@ -37,13 +38,17 @@ class RescheduleActivity : AbstractActivity(R.layout.activity_reschedule) {
         val model = intent.getStringExtra("DOCTOR")
         val oldAppointment = intent.getStringExtra("OLD_APPOINTMENT")
 
-        model?.let {
-            val doctor = Gson().fromJson(it, Doctor::class.java)
+        oldAppointment?.let {
+            val appointment = Gson().fromJson(it, Appointment::class.java)
 
-            viewModel.setSelectedDoctor(doctor)
+            viewModel.setSelectedDoctor(appointment.doctor)
 
             oldAppointment?.let{ viewModel.setOldAppointment(oldAppointment) }
-            bindDoctorInfo(doctor)
+            bindDoctorInfo(appointment.doctor)
+
+            Glide.with(this).load(appointment.doctor.image).into(doctor_img)
+            doctor_name.text = appointment.doctor.fullname
+            doctor_category.text = appointment.doctor.category
         }
 
         appointment_save_btn.setOnClickListener{

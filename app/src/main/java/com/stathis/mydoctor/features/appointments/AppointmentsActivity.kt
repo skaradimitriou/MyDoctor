@@ -8,6 +8,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.akexorcist.snaptimepicker.SnapTimePickerDialog
 import com.bumptech.glide.Glide
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.timepicker.MaterialTimePicker
@@ -85,18 +86,18 @@ class AppointmentsActivity : AbstractActivity(R.layout.activity_appointments) {
     }
 
     private fun selectTime() {
-        val picker = MaterialTimePicker.Builder()
-                .setTimeFormat(TimeFormat.CLOCK_12H)
-                .setHour(12)
-                .setMinute(10)
-                .setTitleText("Select Appointment time")
-                .build()
+        val picker = SnapTimePickerDialog.Builder()
+            .setTitle(R.string.time_header)
+            .setPrefix(R.string.time_suffix)
+            .setSuffix(R.string.time_prefix)
+            .setThemeColor(R.color.ocean_blue)
+            .setTitleColor(R.color.white).build()
 
         appointment_time.setOnClickListener {
             picker.show(this.supportFragmentManager, "SELECT TIME")
-            picker.addOnPositiveButtonClickListener {
-                val hour = picker.hour
-                val minute = picker.minute
+            picker.setListener { pickerHour, pickerMin ->
+                val hour = pickerHour
+                val minute = pickerMin
 
                 viewModel.validateTime(hour, minute)
             }

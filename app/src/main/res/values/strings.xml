@@ -24,9 +24,9 @@
     <string name="onboarding_header_one">Search for a doctor</string>
     <string name="onboarding_desc_one">Search for doctors by name from our search screen. Your latest searches will be shown there.</string>
     <string name="onboarding_header_two">Search doctors by category</string>
-    <string name="onboarding_desc_two">Looking for a specific doctor category? We\'ve got you covered! Just go to all categories and find what you're looking for.</string>
+    <string name="onboarding_desc_two">Looking for a specific doctor category? We have got you covered! Just go to all categories and find what you are looking for.</string>
     <string name="onboarding_header_three">Add a doctor appointment</string>
-    <string name="onboarding_desc_three">Once you have found your doctor, you\'re able to add an appointment to your list.</string>
+    <string name="onboarding_desc_three">Once you have found your doctor, you are able to add an appointment to your list.</string>
 
     <!-- Doctor Categories -->
     <string name="pathologos">Παθολόγος</string>

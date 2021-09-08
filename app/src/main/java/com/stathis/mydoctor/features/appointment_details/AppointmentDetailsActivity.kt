@@ -2,12 +2,14 @@ package com.stathis.mydoctor.features.appointment_details
 
 
 import android.app.AlertDialog
+import android.content.Intent
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.google.gson.Gson
 import com.stathis.mydoctor.R
 import com.stathis.mydoctor.abstraction.AbstractActivity
+import com.stathis.mydoctor.features.reschedule.RescheduleActivity
 import com.stathis.mydoctor.models.Appointment
 import kotlinx.android.synthetic.main.activity_appointment_details.*
 
@@ -40,7 +42,9 @@ class AppointmentDetailsActivity : AbstractActivity(R.layout.activity_appointmen
         viewModel.observe(this)
 
         reschedule_btn.setOnClickListener {
-            //FIXME: Add logic
+            startActivity(Intent(this, RescheduleActivity::class.java).also{
+                it.putExtra("OLD_APPOINTMENT",model)
+            })
         }
 
         cancel_btn.setOnClickListener {
