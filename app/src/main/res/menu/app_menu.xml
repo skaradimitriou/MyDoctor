@@ -12,6 +12,11 @@
         android:title="@string/nav_search" />
 
     <item
+        android:id="@+id/nav_doctors"
+        android:icon="@drawable/ic_doctor"
+        android:title="@string/nav_doctors" />
+
+    <item
         android:id="@+id/nav_appointments"
         android:icon="@drawable/ic_calendar"
         android:title="@string/nav_appointments" />
