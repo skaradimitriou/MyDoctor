@@ -16,10 +16,7 @@ import com.stathis.mydoctor.callbacks.SearchClickListener
 import com.stathis.mydoctor.features.main.search.adapter.SearchParentAdapter
 import com.stathis.mydoctor.features.main.search.models.EmptyQuery
 import com.stathis.mydoctor.features.main.search.models.EmptyResult
-import com.stathis.mydoctor.models.Category
-import com.stathis.mydoctor.models.Doctor
-import com.stathis.mydoctor.models.EmptyModel
-import com.stathis.mydoctor.models.Query
+import com.stathis.mydoctor.models.*
 import com.stathis.mydoctor.utils.TAG
 
 class SearchViewModel : ViewModel(), ItemClickListener {
@@ -32,7 +29,12 @@ class SearchViewModel : ViewModel(), ItemClickListener {
     private lateinit var callback: SearchClickListener
 
     init {
+        startShimmer()
         getUserQueries()
+    }
+
+    private fun startShimmer(){
+        adapter.submitList(listOf(ShimmerObject(),ShimmerObject(),ShimmerObject()))
     }
 
     fun bindCallbacks(callback: SearchClickListener) {
@@ -61,8 +63,14 @@ class SearchViewModel : ViewModel(), ItemClickListener {
 
     private fun bindUserQueries() {
         when(queryList.isEmpty()){
-            true -> adapter.submitList(listOf(EmptyQuery("You have no queries yet","We couldn't find your queries. Once you search for something it will appear here.")))
-            false -> adapter.submitList(queryList)
+            true -> {
+                adapter.submitList(listOf(EmptyQuery("You have no queries yet","We couldn't find your queries. Once you search for something it will appear here.")))
+                adapter.notifyDataSetChanged()
+            }
+            false -> {
+                adapter.submitList(queryList)
+                adapter.notifyDataSetChanged()
+            }
         }
 
         adapter.notifyDataSetChanged()
