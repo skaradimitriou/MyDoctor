@@ -86,4 +86,10 @@
         <item name="android:drawablePadding">@dimen/dimen_16</item>
     </style>
 
+    <style name="shimmer_text" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/shimmer_grey</item>
+        <item name="android:text">@string/app_name</item>
+        <item name="android:background">@color/shimmer_grey</item>
+    </style>
+
 </resources>

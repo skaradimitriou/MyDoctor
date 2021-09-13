@@ -6,14 +6,20 @@ import android.view.View
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
+import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.gson.Gson
 import com.stathis.mydoctor.abstraction.AbstractAndroidViewModel
 import com.stathis.mydoctor.abstraction.ItemClickListener
+import com.stathis.mydoctor.abstraction.LocalModel
 import com.stathis.mydoctor.callbacks.DoctorClickListener
 import com.stathis.mydoctor.features.results.adapter.DoctorResultsAdapter
 import com.stathis.mydoctor.models.Doctor
+import com.stathis.mydoctor.models.EmptyModel
+import com.stathis.mydoctor.models.ShimmerObject
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class FavoritesViewModel(app : Application) : AbstractAndroidViewModel(app), ItemClickListener{
 
@@ -25,7 +31,16 @@ class FavoritesViewModel(app : Application) : AbstractAndroidViewModel(app), Ite
     private lateinit var callback : DoctorClickListener
 
     init {
-        getUserFavorites()
+        startShimmer()
+
+        viewModelScope.launch{
+            delay(1000)
+            getUserFavorites()
+        }
+    }
+
+    private fun startShimmer() {
+        adapter.submitList(listOf(ShimmerObject(),ShimmerObject(),ShimmerObject(),ShimmerObject(),ShimmerObject()))
     }
 
     fun addCallback(callback : DoctorClickListener){
@@ -50,8 +65,16 @@ class FavoritesViewModel(app : Application) : AbstractAndroidViewModel(app), Ite
 
     fun observe(owner :LifecycleOwner){
         favorites.observe(owner, Observer{
-            adapter.submitList(it)
+            when(it.size){
+                0 -> bindList(listOf(EmptyModel("")))
+                else -> bindList(it)
+            }
         })
+    }
+
+    private fun bindList(list : List<LocalModel>){
+        adapter.submitList(list)
+        adapter.notifyDataSetChanged()
     }
 
     fun release(owner : LifecycleOwner){
