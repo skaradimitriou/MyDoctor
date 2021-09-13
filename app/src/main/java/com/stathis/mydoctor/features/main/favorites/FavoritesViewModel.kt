@@ -34,7 +34,7 @@ class FavoritesViewModel(app : Application) : AbstractAndroidViewModel(app), Ite
         startShimmer()
 
         viewModelScope.launch{
-            delay(1000)
+            delay(500)
             getUserFavorites()
         }
     }

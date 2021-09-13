@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.facebook.shimmer.ShimmerFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:shimmer_auto_start="true"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:cardCornerRadius="@dimen/dimen_10"
+        android:layout_marginTop="@dimen/dimen_10">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/appointment_doctor_img"
+                android:layout_width="@dimen/dimen_60"
+                android:layout_height="@dimen/dimen_60"
+                android:layout_margin="@dimen/dimen_10"
+                android:scaleType="centerCrop"
+                android:src="@color/shimmer_grey"
+                app:layout_constraintStart_toEndOf="@id/blue_line"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/appointment_name"
+                style="@style/shimmer_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_10"
+                android:layout_marginTop="@dimen/dimen_10"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/appointment_doctor_img"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/appointment_desc"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                style="@style/shimmer_text"
+                android:layout_marginTop="@dimen/dimen_5"
+                android:layout_marginStart="@dimen/dimen_10"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/appointment_doctor_img"
+                app:layout_constraintTop_toBottomOf="@id/appointment_name" />
+
+            <View
+                android:id="@+id/appointment_divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/dark_grey"
+                android:layout_margin="@dimen/dimen_10"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/appointment_doctor_img" />
+
+            <TextView
+                android:id="@+id/appointment_time"
+                android:layout_width="0dp"
+                style="@style/shimmer_text"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_5"
+                app:layout_constraintStart_toStartOf="@id/appointment_doctor_img"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/appointment_divider"/>
+
+            <TextView
+                android:id="@+id/appointment_location"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                style="@style/shimmer_text"
+                android:layout_marginTop="@dimen/dimen_5"
+                android:layout_marginBottom="@dimen/dimen_10"
+                app:layout_constraintStart_toStartOf="@id/appointment_doctor_img"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:text="@string/appointment_location_value"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/appointment_time"/>
+
+
+            <View
+                android:id="@+id/blue_line"
+                android:layout_width="@dimen/dimen_10"
+                android:layout_height="0dp"
+                android:background="@color/navy_blue"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.cardview.widget.CardView>
+</com.facebook.shimmer.ShimmerFrameLayout>

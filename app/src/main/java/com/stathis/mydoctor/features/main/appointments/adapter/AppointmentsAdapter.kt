@@ -9,6 +9,7 @@ import com.stathis.mydoctor.abstraction.ItemClickListener
 import com.stathis.mydoctor.abstraction.LocalModel
 import com.stathis.mydoctor.models.Appointment
 import com.stathis.mydoctor.models.EmptyModel
+import com.stathis.mydoctor.models.ShimmerObject
 
 class AppointmentsAdapter(private val callback : ItemClickListener) : ListAdapter<LocalModel, AppointmentsViewHolder>(DiffUtilClass<LocalModel>()) {
 
@@ -23,6 +24,7 @@ class AppointmentsAdapter(private val callback : ItemClickListener) : ListAdapte
 
     override fun getItemViewType(position: Int): Int {
         return when(getItem(position)){
+            is ShimmerObject -> R.layout.holder_shimmer_appointment_item
             is EmptyModel -> R.layout.holder_empty_appointment
             is Appointment -> R.layout.holder_appointment_item
             else -> R.layout.holder_empty_layout

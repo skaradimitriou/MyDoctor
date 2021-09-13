@@ -1,10 +1,7 @@
 package com.stathis.mydoctor.features.main.appointments
 
 import android.view.View
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.gson.Gson
@@ -12,6 +9,8 @@ import com.stathis.mydoctor.abstraction.ItemClickListener
 import com.stathis.mydoctor.callbacks.AppointmentClickListener
 import com.stathis.mydoctor.features.main.appointments.adapter.AppointmentsAdapter
 import com.stathis.mydoctor.models.*
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class AppointmentsViewModel : ViewModel(), ItemClickListener {
 
@@ -22,7 +21,16 @@ class AppointmentsViewModel : ViewModel(), ItemClickListener {
     private lateinit var callback : AppointmentClickListener
 
     init {
-        getUserAppointments()
+        startShimmer()
+
+        viewModelScope.launch{
+            delay(500)
+            getUserAppointments()
+        }
+    }
+
+    private fun startShimmer() {
+        adapter.submitList(listOf(ShimmerObject(),ShimmerObject(),ShimmerObject(),ShimmerObject(),ShimmerObject()))
     }
 
     private fun getUserAppointments() {
