@@ -8,9 +8,12 @@ import com.stathis.mydoctor.abstraction.DiffUtilClass
 import com.stathis.mydoctor.abstraction.ItemClickListener
 import com.stathis.mydoctor.abstraction.LocalModel
 import com.stathis.mydoctor.features.main.overview.model.AllCategoriesModel
+import com.stathis.mydoctor.features.main.overview.model.ShimmerCategory
+import com.stathis.mydoctor.features.main.overview.model.ShimmerPromo
 import com.stathis.mydoctor.models.Category
 import com.stathis.mydoctor.models.Doctor
 import com.stathis.mydoctor.models.PromoItem
+import com.stathis.mydoctor.models.ShimmerObject
 
 class OverviewChildAdapter(private val callback : ItemClickListener) : ListAdapter<LocalModel, OverviewChildViewHolder>(DiffUtilClass<LocalModel>()) {
 
@@ -25,6 +28,9 @@ class OverviewChildAdapter(private val callback : ItemClickListener) : ListAdapt
 
     override fun getItemViewType(position: Int): Int {
         return when(getItem(position)){
+            is ShimmerObject -> R.layout.holder_shimmer_doctor_card_item
+            is ShimmerCategory -> R.layout.holder_shimmer_category_item
+            is ShimmerPromo -> R.layout.holder_shimmer_promo_item
             is Doctor -> R.layout.holder_home_doctor_card_item
             is Category -> R.layout.holder_home_category_item
             is PromoItem -> R.layout.holder_home_promo_item

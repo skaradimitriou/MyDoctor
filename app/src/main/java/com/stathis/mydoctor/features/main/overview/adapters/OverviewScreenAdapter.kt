@@ -7,10 +7,9 @@ import com.stathis.mydoctor.R
 import com.stathis.mydoctor.abstraction.DiffUtilClass
 import com.stathis.mydoctor.abstraction.ItemClickListener
 import com.stathis.mydoctor.abstraction.LocalModel
-import com.stathis.mydoctor.features.main.overview.model.CategoryParent
-import com.stathis.mydoctor.features.main.overview.model.DoctorParent
-import com.stathis.mydoctor.features.main.overview.model.PromoParent
+import com.stathis.mydoctor.features.main.overview.model.*
 import com.stathis.mydoctor.models.HeaderModel
+import com.stathis.mydoctor.models.ShimmerObject
 
 class OverviewScreenAdapter(private val callback : ItemClickListener) : ListAdapter<LocalModel, OverviewScreenViewHolder>(DiffUtilClass<LocalModel>()) {
 
@@ -23,13 +22,15 @@ class OverviewScreenAdapter(private val callback : ItemClickListener) : ListAdap
         holder.bindData(getItem(position))
     }
 
-    override fun getItemViewType(position: Int): Int {
-        return when(getItem(position)){
-            is HeaderModel -> R.layout.holder_home_header_item
-            is CategoryParent -> R.layout.holder_nested_parent_item
-            is DoctorParent -> R.layout.holder_nested_parent_item
-            is PromoParent -> R.layout.holder_nested_parent_viewpager
-            else -> R.layout.holder_empty_layout
-        }
+    override fun getItemViewType(position: Int): Int = when(getItem(position)){
+        is ShimmerHeader -> R.layout.holder_home_shimmer_header_item
+        is ShimmerPromo -> R.layout.holder_nested_parent_viewpager
+        is ShimmerParent -> R.layout.holder_shimmer_home_parent_item
+        is ShimmerCategoryParent -> R.layout.holder_nested_parent_item
+        is HeaderModel -> R.layout.holder_home_header_item
+        is CategoryParent -> R.layout.holder_nested_parent_item
+        is DoctorParent -> R.layout.holder_nested_parent_item
+        is PromoParent -> R.layout.holder_nested_parent_viewpager
+        else -> R.layout.holder_empty_layout
     }
 }

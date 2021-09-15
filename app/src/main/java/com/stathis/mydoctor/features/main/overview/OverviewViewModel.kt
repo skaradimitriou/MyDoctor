@@ -13,14 +13,12 @@ import com.stathis.mydoctor.abstraction.ItemClickListener
 import com.stathis.mydoctor.abstraction.LocalModel
 import com.stathis.mydoctor.callbacks.HomeClickListener
 import com.stathis.mydoctor.features.main.overview.adapters.OverviewScreenAdapter
-import com.stathis.mydoctor.features.main.overview.model.AllCategoriesModel
-import com.stathis.mydoctor.features.main.overview.model.CategoryParent
-import com.stathis.mydoctor.features.main.overview.model.DoctorParent
-import com.stathis.mydoctor.features.main.overview.model.PromoParent
+import com.stathis.mydoctor.features.main.overview.model.*
 import com.stathis.mydoctor.models.*
 import com.stathis.mydoctor.utils.DEFAULT_IMG
 import com.stathis.mydoctor.utils.DEFAULT_USERNAME
 import com.stathis.mydoctor.utils.TAG
+import kotlinx.coroutines.launch
 
 class OverviewViewModel(app: Application) : AbstractAndroidViewModel(app), ItemClickListener {
 
@@ -32,8 +30,28 @@ class OverviewViewModel(app: Application) : AbstractAndroidViewModel(app), ItemC
     private lateinit var callback: HomeClickListener
 
     init {
-        initDummyList(User(DEFAULT_USERNAME, DEFAULT_IMG))
+        startShimmer()
+
+        viewModelScope.launch {
+            getUserData()
+        }
+
         getUserData()
+    }
+
+    private fun startShimmer() {
+        val shimmer = listOf(ShimmerObject(),ShimmerObject(), ShimmerObject(), ShimmerObject())
+        val promo = listOf(ShimmerPromoItem(),ShimmerPromoItem(),ShimmerPromoItem())
+        val categories = listOf(ShimmerCategory(),ShimmerCategory(),ShimmerCategory(),ShimmerCategory())
+
+        val list = listOf(
+            ShimmerHeader(),
+            ShimmerPromo(promo),
+            ShimmerCategoryParent(categories),
+            ShimmerParent(shimmer)
+        )
+
+        adapter.submitList(list)
     }
 
     fun bindCallbacks(callback: HomeClickListener) {
