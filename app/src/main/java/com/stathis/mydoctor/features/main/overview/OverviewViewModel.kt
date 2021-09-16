@@ -18,6 +18,7 @@ import com.stathis.mydoctor.models.*
 import com.stathis.mydoctor.utils.DEFAULT_IMG
 import com.stathis.mydoctor.utils.DEFAULT_USERNAME
 import com.stathis.mydoctor.utils.TAG
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class OverviewViewModel(app: Application) : AbstractAndroidViewModel(app), ItemClickListener {
@@ -33,6 +34,7 @@ class OverviewViewModel(app: Application) : AbstractAndroidViewModel(app), ItemC
         startShimmer()
 
         viewModelScope.launch {
+            delay(1000)
             getUserData()
         }
 
