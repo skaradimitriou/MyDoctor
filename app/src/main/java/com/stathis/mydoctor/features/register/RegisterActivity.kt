@@ -5,8 +5,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.stathis.mydoctor.R
 import com.stathis.mydoctor.abstraction.AbstractActivity
-import com.stathis.mydoctor.features.main.MainActivity
 import com.stathis.mydoctor.features.onboarding.OnboardingActivity
+import com.stathis.mydoctor.utils.MySnackbars
 import kotlinx.android.synthetic.main.activity_register.*
 
 class RegisterActivity : AbstractActivity(R.layout.activity_register) {
@@ -25,7 +25,7 @@ class RegisterActivity : AbstractActivity(R.layout.activity_register) {
 
             when(pass == pass_conf){
                 true -> viewModel.validateData(email,pass)
-                false -> Unit //handle error case with appropriate messages
+                false -> MySnackbars().infoSnack(findViewById(R.id.register_screen_parent),getString(R.string.pass_dont_match))
             }
         }
 
@@ -35,7 +35,7 @@ class RegisterActivity : AbstractActivity(R.layout.activity_register) {
                     startActivity(Intent(this, OnboardingActivity::class.java))
                     finish()
                 }
-                false -> {} // throw some kind of error
+                false -> MySnackbars().infoSnack(findViewById(R.id.register_screen_parent),getString(R.string.pass_input_failed))
             }
         })
     }

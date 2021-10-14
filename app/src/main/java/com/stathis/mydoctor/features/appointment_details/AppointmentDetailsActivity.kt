@@ -23,13 +23,6 @@ class AppointmentDetailsActivity : AbstractActivity(R.layout.activity_appointmen
     }
 
     override fun running() {
-        /*
-        FIXME: 1. Add an "are you sure" dialog when I tap on cancel button
-               2. Create reschedule activity in order to change the time of the appointment
-               3. Add chat button at the top
-               4. Add call button at the top
-         */
-
         appointment_details.adapter = viewModel.adapter
 
         val model = intent.getStringExtra("APPOINTMENT")

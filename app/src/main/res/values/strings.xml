@@ -110,6 +110,10 @@
     <string name="time_prefix">&gt;&gt;</string>
     <string name="time_suffix">&lt;&lt;</string>
 
+    <string name="forgot_pass_email_sent">An e-mail has been sent to the above address.</string>
+    <string name="login_error_occured">An error occured. Please try again.</string>
+    <string name="pass_dont_match">Passwords don\'t match</string>
+    <string name="pass_input_failed">Your password should contain a capital letter, a number, a special character and must be longer than 6 characters</string>
 
 
 </resources>

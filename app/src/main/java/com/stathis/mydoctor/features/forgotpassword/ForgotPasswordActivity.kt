@@ -6,6 +6,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.stathis.mydoctor.R
 import com.stathis.mydoctor.abstraction.AbstractActivity
+import com.stathis.mydoctor.utils.MySnackbars
 import de.mateware.snacky.Snacky
 import kotlinx.android.synthetic.main.activity_forgot_password.*
 
@@ -24,8 +25,8 @@ class ForgotPasswordActivity : AbstractActivity(R.layout.activity_forgot_passwor
 
         viewModel.userVerified.observe(this, Observer {
             when (it) {
-                true -> showPopup("An e-mail has been sent to the above address.")
-                false -> showError("An error has occured. Please try again")
+                true -> showPopup(getString(R.string.forgot_pass_email_sent))
+                false -> showError(getString(R.string.login_error_occured))
             }
         })
     }
@@ -34,17 +35,13 @@ class ForgotPasswordActivity : AbstractActivity(R.layout.activity_forgot_passwor
         viewModel.userVerified.removeObservers(this)
     }
     private fun showPopup(message : String) {
-        Snacky.builder().setView(findViewById(R.id.forgot_pass_screen)).success().setText(message)
-            .show()
-
+        MySnackbars().successSnack(findViewById(R.id.forgot_pass_screen),message)
         Handler(Looper.getMainLooper()).postDelayed({
             onBackPressed()
             finish()
         }, 3000)
     }
 
-    private fun showError(message : String) {
-        Snacky.builder().setView(findViewById(R.id.forgot_pass_screen)).error().setText(message)
-            .show()
-    }
+    private fun showError(message : String) = MySnackbars().errorSnack(findViewById(R.id.forgot_pass_screen),message)
+
 }

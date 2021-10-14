@@ -8,6 +8,7 @@ import com.stathis.mydoctor.abstraction.AbstractActivity
 import com.stathis.mydoctor.features.forgotpassword.ForgotPasswordActivity
 import com.stathis.mydoctor.features.main.MainActivity
 import com.stathis.mydoctor.features.register.RegisterActivity
+import com.stathis.mydoctor.utils.MySnackbars
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AbstractActivity(R.layout.activity_login) {
@@ -37,7 +38,7 @@ class LoginActivity : AbstractActivity(R.layout.activity_login) {
         viewModel.userAuthenticated.observe(this, Observer {
             when(it){
                 true -> startActivity(Intent(this, MainActivity::class.java))
-                false -> {} // throw some kind of error to the user
+                false -> MySnackbars().infoSnack(findViewById(R.id.login_screen_parent),getString(R.string.login_error_occured))
             }
         })
 

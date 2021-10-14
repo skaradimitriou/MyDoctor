@@ -26,8 +26,7 @@ class RegisterViewModel : ViewModel() {
                     }
                 }
             }
-            false -> {
-            } // throw some kind of error to notify the user
+            false -> userRegisted.value = false
         }
     }
 
@@ -43,12 +42,12 @@ class RegisterViewModel : ViewModel() {
         )
 
         documentReference.set(data).addOnSuccessListener {
-            Log.d("", "User profile is created for Stathis")
+            Log.d("", "User profile is created for user")
             userRegisted.value = true
         }
 
         documentReference.set(data).addOnFailureListener {
-            Log.d("", "User profile is created for Stathis")
+            Log.d("", "User profile is created for user")
             userRegisted.value = false
         }
     }

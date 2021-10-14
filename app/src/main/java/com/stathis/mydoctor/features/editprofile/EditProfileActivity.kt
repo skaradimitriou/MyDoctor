@@ -42,12 +42,9 @@ class EditProfileActivity : AbstractActivity(R.layout.activity_edit_profile), Ea
 
         profile_details_recycler.adapter = viewModel.adapter
 
-        val test = ""
-
         viewModel.setEditMode()
 
         profile_user_img.setOnClickListener{
-            //open dialog with options
             when(hasPermissions()){
                 true -> showUploadOptions()
                 false -> askForPermissions()
@@ -55,8 +52,6 @@ class EditProfileActivity : AbstractActivity(R.layout.activity_edit_profile), Ea
         }
 
         edit_profile_save_btn.setOnClickListener{
-            //save user data to firestore
-
             viewModel.setEditMode()
 
             /*

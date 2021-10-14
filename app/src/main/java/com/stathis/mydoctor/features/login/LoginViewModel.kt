@@ -30,7 +30,7 @@ class LoginViewModel : ViewModel() {
                     }
                 }
             }
-            false -> {}
+            false -> userAuthenticated.value = false
         }
     }
 }
